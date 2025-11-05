@@ -1,0 +1,32 @@
+# 1. SECRETS
+# Keep all passwords, API keys, and environment-specific
+# settings out of your repository. This is the most important rule.
+.env
+*.env
+*.env.*
+
+# 2. VIRTUAL ENVIRONMENT
+# This folder is huge, specific to your OS, and can be
+# perfectly rebuilt using requirements.txt. Never commit it.
+.venv/
+venv/
+*.venv
+
+# 3. PYCHARM / IDE
+# Your personal IDE settings, run configurations, and
+# local history. This will just annoy your teammates.
+.idea/
+
+# 4. PYTHON CACHE
+# Auto-generated compiled Python files.
+# They're just clutter.
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 5. BUILD/DISTRIBUTION ARTIFACTS
+# Anything you generate when building a package.
+build/
+dist/
+*.egg-info
