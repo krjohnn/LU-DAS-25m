@@ -1,0 +1,388 @@
+# Movie Database for Redis
+# Copy and paste these commands into your Redis CLI or online Redis instance
+# Dataset contains 80 movies, 60 actors, 30 directors, and more!
+
+# ============================================
+# MOVIES (Hashes) - 80 movies
+# ============================================
+HSET movie:1001 title "The Shawshank Redemption" year 1994 runtime 142 genre "Drama" director_id 2001 rating 9.3 votes 2500000 revenue 28341469 budget 25000000
+HSET movie:1002 title "The Godfather" year 1972 runtime 175 genre "Crime,Drama" director_id 2002 rating 9.2 votes 1800000 revenue 134821952 budget 6000000
+HSET movie:1003 title "The Dark Knight" year 2008 runtime 152 genre "Action,Crime,Drama" director_id 2003 rating 9.0 votes 2600000 revenue 1004558444 budget 185000000
+HSET movie:1004 title "Pulp Fiction" year 1994 runtime 154 genre "Crime,Drama" director_id 2004 rating 8.9 votes 2000000 revenue 213928762 budget 8000000
+HSET movie:1005 title "Forrest Gump" year 1994 runtime 142 genre "Drama,Romance" director_id 2005 rating 8.8 votes 2100000 revenue 678226465 budget 55000000
+HSET movie:1006 title "Inception" year 2010 runtime 148 genre "Action,Sci-Fi,Thriller" director_id 2003 rating 8.8 votes 2300000 revenue 829895144 budget 160000000
+HSET movie:1007 title "The Matrix" year 1999 runtime 136 genre "Action,Sci-Fi" director_id 2006 rating 8.7 votes 1900000 revenue 463517383 budget 63000000
+HSET movie:1008 title "Goodfellas" year 1990 runtime 146 genre "Crime,Drama" director_id 2007 rating 8.7 votes 1200000 revenue 46836394 budget 25000000
+HSET movie:1009 title "Interstellar" year 2014 runtime 169 genre "Adventure,Drama,Sci-Fi" director_id 2003 rating 8.6 votes 1800000 revenue 677471339 budget 165000000
+HSET movie:1010 title "Fight Club" year 1999 runtime 139 genre "Drama" director_id 2008 rating 8.8 votes 2000000 revenue 100853753 budget 63000000
+HSET movie:1011 title "The Lord of the Rings: The Return of the King" year 2003 runtime 201 genre "Adventure,Drama,Fantasy" director_id 2009 rating 9.0 votes 1800000 revenue 1142456987 budget 94000000
+HSET movie:1012 title "Star Wars: Episode V" year 1980 runtime 124 genre "Action,Adventure,Fantasy" director_id 2010 rating 8.7 votes 1300000 revenue 538375067 budget 18000000
+HSET movie:1013 title "The Silence of the Lambs" year 1991 runtime 118 genre "Crime,Drama,Thriller" director_id 2011 rating 8.6 votes 1400000 revenue 272742922 budget 19000000
+HSET movie:1014 title "Saving Private Ryan" year 1998 runtime 169 genre "Drama,War" director_id 2012 rating 8.6 votes 1350000 revenue 482349603 budget 70000000
+HSET movie:1015 title "Schindler's List" year 1993 runtime 195 genre "Biography,Drama,History" director_id 2012 rating 9.0 votes 1350000 revenue 322161245 budget 22000000
+HSET movie:1016 title "The Prestige" year 2006 runtime 130 genre "Drama,Mystery,Thriller" director_id 2003 rating 8.5 votes 1300000 revenue 109676311 budget 40000000
+HSET movie:1017 title "The Departed" year 2006 runtime 151 genre "Crime,Drama,Thriller" director_id 2007 rating 8.5 votes 1250000 revenue 291465034 budget 90000000
+HSET movie:1018 title "Gladiator" year 2000 runtime 155 genre "Action,Adventure,Drama" director_id 2013 rating 8.5 votes 1500000 revenue 460583960 budget 103000000
+HSET movie:1019 title "The Green Mile" year 1999 runtime 189 genre "Crime,Drama,Fantasy" director_id 2001 rating 8.6 votes 1250000 revenue 286801374 budget 60000000
+HSET movie:1020 title "The Usual Suspects" year 1995 runtime 106 genre "Crime,Mystery,Thriller" director_id 2014 rating 8.5 votes 1100000 revenue 23341568 budget 6000000
+HSET movie:1021 title "Se7en" year 1995 runtime 127 genre "Crime,Drama,Mystery" director_id 2008 rating 8.6 votes 1550000 revenue 327311859 budget 33000000
+HSET movie:1022 title "The Lion King" year 1994 runtime 88 genre "Animation,Adventure,Drama" director_id 2015 rating 8.5 votes 1050000 revenue 968483777 budget 45000000
+HSET movie:1023 title "Back to the Future" year 1985 runtime 116 genre "Adventure,Comedy,Sci-Fi" director_id 2016 rating 8.5 votes 1200000 revenue 381109762 budget 19000000
+HSET movie:1024 title "The Pianist" year 2002 runtime 150 genre "Biography,Drama,Music" director_id 2017 rating 8.5 votes 850000 revenue 120072577 budget 35000000
+HSET movie:1025 title "Terminator 2: Judgment Day" year 1991 runtime 137 genre "Action,Sci-Fi" director_id 2018 rating 8.6 votes 1100000 revenue 520881154 budget 102000000
+HSET movie:1026 title "American History X" year 1998 runtime 119 genre "Crime,Drama" director_id 2019 rating 8.5 votes 1100000 revenue 23875127 budget 20000000
+HSET movie:1027 title "Whiplash" year 2014 runtime 106 genre "Drama,Music" director_id 2020 rating 8.5 votes 850000 revenue 48998712 budget 3300000
+HSET movie:1028 title "The Intouchables" year 2011 runtime 112 genre "Biography,Comedy,Drama" director_id 2021 rating 8.5 votes 850000 revenue 426588510 budget 10800000
+HSET movie:1029 title "The Shining" year 1980 runtime 146 genre "Drama,Horror" director_id 2022 rating 8.4 votes 1000000 revenue 47302000 budget 19000000
+HSET movie:1030 title "Apocalypse Now" year 1979 runtime 147 genre "Drama,Mystery,War" director_id 2002 rating 8.4 votes 650000 revenue 150000000 budget 31500000
+HSET movie:1031 title "Django Unchained" year 2012 runtime 165 genre "Drama,Western" director_id 2004 rating 8.4 votes 1500000 revenue 425368238 budget 100000000
+HSET movie:1032 title "WALL-E" year 2008 runtime 98 genre "Animation,Adventure,Family" director_id 2023 rating 8.4 votes 1100000 revenue 521311860 budget 180000000
+HSET movie:1033 title "Avengers: Endgame" year 2019 runtime 181 genre "Action,Adventure,Drama" director_id 2024 rating 8.4 votes 1100000 revenue 2797800564 budget 356000000
+HSET movie:1034 title "Spider-Man: Into the Spider-Verse" year 2018 runtime 117 genre "Animation,Action,Adventure" director_id 2025 rating 8.4 votes 500000 revenue 384299543 budget 90000000
+HSET movie:1035 title "The Wolf of Wall Street" year 2013 runtime 180 genre "Biography,Crime,Drama" director_id 2007 rating 8.2 votes 1350000 revenue 392000694 budget 100000000
+HSET movie:1036 title "Joker" year 2019 runtime 122 genre "Crime,Drama,Thriller" director_id 2026 rating 8.4 votes 1300000 revenue 1074251311 budget 55000000
+HSET movie:1037 title "Parasite" year 2019 runtime 132 genre "Comedy,Drama,Thriller" director_id 2027 rating 8.5 votes 850000 revenue 258926582 budget 11400000
+HSET movie:1038 title "Memento" year 2000 runtime 113 genre "Mystery,Thriller" director_id 2003 rating 8.4 votes 1250000 revenue 40047236 budget 9000000
+HSET movie:1039 title "The Truman Show" year 1998 runtime 103 genre "Comedy,Drama,Sci-Fi" director_id 2028 rating 8.2 votes 1050000 revenue 264118201 budget 60000000
+HSET movie:1040 title "Eternal Sunshine of the Spotless Mind" year 2004 runtime 108 genre "Drama,Romance,Sci-Fi" director_id 2029 rating 8.3 votes 1000000 revenue 74036715 budget 20000000
+HSET movie:1041 title "The Grand Budapest Hotel" year 2014 runtime 99 genre "Adventure,Comedy,Crime" director_id 2030 rating 8.1 votes 800000 revenue 174600318 budget 25000000
+HSET movie:1042 title "Braveheart" year 1995 runtime 178 genre "Biography,Drama,History" director_id 3001 rating 8.3 votes 1050000 revenue 210409945 budget 72000000
+HSET movie:1043 title "Inglourious Basterds" year 2009 runtime 153 genre "Adventure,Drama,War" director_id 2004 rating 8.3 votes 1400000 revenue 321457747 budget 70000000
+HSET movie:1044 title "Good Will Hunting" year 1997 runtime 126 genre "Drama,Romance" director_id 3002 rating 8.3 votes 950000 revenue 225933435 budget 10000000
+HSET movie:1045 title "V for Vendetta" year 2005 runtime 132 genre "Action,Drama,Thriller" director_id 3003 rating 8.2 votes 1100000 revenue 132511035 budget 54000000
+HSET movie:1046 title "Casino" year 1995 runtime 178 genre "Crime,Drama" director_id 2007 rating 8.2 votes 530000 revenue 116112375 budget 52000000
+HSET movie:1047 title "The Sixth Sense" year 1999 runtime 107 genre "Drama,Mystery,Thriller" director_id 3004 rating 8.2 votes 1000000 revenue 672806292 budget 40000000
+HSET movie:1048 title "Mad Max: Fury Road" year 2015 runtime 120 genre "Action,Adventure,Sci-Fi" director_id 3005 rating 8.1 votes 1000000 revenue 378858340 budget 150000000
+HSET movie:1049 title "Toy Story" year 1995 runtime 81 genre "Animation,Adventure,Comedy" director_id 3006 rating 8.3 votes 1000000 revenue 373554033 budget 30000000
+HSET movie:1050 title "Blade Runner 2049" year 2017 runtime 164 genre "Action,Drama,Mystery" director_id 3007 rating 8.0 votes 550000 revenue 267718858 budget 150000000
+HSET movie:1051 title "The Social Network" year 2010 runtime 120 genre "Biography,Drama" director_id 2008 rating 7.8 votes 700000 revenue 224920315 budget 40000000
+HSET movie:1052 title "1917" year 2019 runtime 119 genre "Drama,Thriller,War" director_id 3008 rating 8.3 votes 600000 revenue 384577201 budget 95000000
+HSET movie:1053 title "There Will Be Blood" year 2007 runtime 158 genre "Drama" director_id 3009 rating 8.2 votes 600000 revenue 76181545 budget 25000000
+HSET movie:1054 title "No Country for Old Men" year 2007 runtime 122 genre "Crime,Drama,Thriller" director_id 2006 rating 8.2 votes 950000 revenue 171627166 budget 25000000
+HSET movie:1055 title "The Big Lebowski" year 1998 runtime 117 genre "Comedy,Crime" director_id 2006 rating 8.1 votes 800000 revenue 46189568 budget 15000000
+HSET movie:1056 title "Gone Girl" year 2014 runtime 149 genre "Drama,Mystery,Thriller" director_id 2008 rating 8.1 votes 950000 revenue 369330363 budget 61000000
+HSET movie:1057 title "Arrival" year 2016 runtime 116 genre "Drama,Mystery,Sci-Fi" director_id 3007 rating 7.9 votes 700000 revenue 203388186 budget 47000000
+HSET movie:1058 title "The Revenant" year 2015 runtime 156 genre "Action,Adventure,Drama" director_id 3010 rating 8.0 votes 850000 revenue 532950503 budget 135000000
+HSET movie:1059 title "Dunkirk" year 2017 runtime 106 genre "Action,Drama,History" director_id 2003 rating 7.8 votes 650000 revenue 526940665 budget 100000000
+HSET movie:1060 title "La La Land" year 2016 runtime 128 genre "Comedy,Drama,Music" director_id 2020 rating 8.0 votes 550000 revenue 447399601 budget 30000000
+HSET movie:1061 title "A Beautiful Mind" year 2001 runtime 135 genre "Biography,Drama" director_id 3011 rating 8.2 votes 900000 revenue 313542341 budget 58000000
+HSET movie:1062 title "The Imitation Game" year 2014 runtime 114 genre "Biography,Drama,Thriller" director_id 3012 rating 8.0 votes 750000 revenue 233555708 budget 14000000
+HSET movie:1063 title "Room" year 2015 runtime 118 genre "Drama,Thriller" director_id 3013 rating 8.1 votes 420000 revenue 35401758 budget 13000000
+HSET movie:1064 title "Her" year 2013 runtime 126 genre "Drama,Romance,Sci-Fi" director_id 3014 rating 8.0 votes 600000 revenue 48274483 budget 23000000
+HSET movie:1065 title "Drive" year 2011 runtime 100 genre "Action,Drama" director_id 3015 rating 7.8 votes 650000 revenue 78100000 budget 15000000
+HSET movie:1066 title "Shutter Island" year 2010 runtime 138 genre "Mystery,Thriller" director_id 2007 rating 8.2 votes 1250000 revenue 294805697 budget 80000000
+HSET movie:1067 title "The Pursuit of Happyness" year 2006 runtime 117 genre "Biography,Drama" director_id 3016 rating 8.0 votes 500000 revenue 307127625 budget 55000000
+HSET movie:1068 title "Slumdog Millionaire" year 2008 runtime 120 genre "Drama,Romance" director_id 3017 rating 8.0 votes 850000 revenue 378408578 budget 15000000
+HSET movie:1069 title "127 Hours" year 2010 runtime 94 genre "Biography,Drama" director_id 3017 rating 7.5 votes 380000 revenue 60738797 budget 18000000
+HSET movie:1070 title "Trainspotting" year 1996 runtime 93 genre "Drama" director_id 3017 rating 8.1 votes 700000 revenue 72000000 budget 1500000
+HSET movie:1071 title "Oldboy" year 2003 runtime 120 genre "Action,Drama,Mystery" director_id 3018 rating 8.4 votes 580000 revenue 15000000 budget 3000000
+HSET movie:1072 title "The Handmaiden" year 2016 runtime 145 genre "Drama,Romance,Thriller" director_id 3018 rating 8.1 votes 150000 revenue 37863670 budget 8800000
+HSET movie:1073 title "Spirited Away" year 2001 runtime 125 genre "Animation,Adventure,Family" director_id 3019 rating 8.6 votes 750000 revenue 355467346 budget 19000000
+HSET movie:1074 title "Princess Mononoke" year 1997 runtime 134 genre "Animation,Action,Adventure" director_id 3019 rating 8.4 votes 400000 revenue 159375308 budget 23500000
+HSET movie:1075 title "Your Name" year 2016 runtime 106 genre "Animation,Drama,Fantasy" director_id 3020 rating 8.4 votes 270000 revenue 357984193 budget 7500000
+HSET movie:1076 title "Coco" year 2017 runtime 105 genre "Animation,Adventure,Comedy" director_id 3021 rating 8.4 votes 500000 revenue 807825344 budget 175000000
+HSET movie:1077 title "Inside Out" year 2015 runtime 95 genre "Animation,Adventure,Comedy" director_id 3022 rating 8.1 votes 700000 revenue 858846732 budget 175000000
+HSET movie:1078 title "Zootopia" year 2016 runtime 108 genre "Animation,Adventure,Comedy" director_id 3023 rating 8.0 votes 530000 revenue 1023784195 budget 150000000
+HSET movie:1079 title "Finding Nemo" year 2003 runtime 100 genre "Animation,Adventure,Comedy" director_id 3023 rating 8.2 votes 1050000 revenue 940335536 budget 94000000
+HSET movie:1080 title "The Incredibles" year 2004 runtime 115 genre "Animation,Action,Adventure" director_id 3024 rating 8.0 votes 750000 revenue 633019734 budget 92000000
+
+# ============================================
+# DIRECTORS (Hashes) - 30 directors
+# ============================================
+HSET director:2001 name "Frank Darabont" birth_year 1959 nationality "American" awards 3
+HSET director:2002 name "Francis Ford Coppola" birth_year 1939 nationality "American" awards 6
+HSET director:2003 name "Christopher Nolan" birth_year 1970 nationality "British-American" awards 11
+HSET director:2004 name "Quentin Tarantino" birth_year 1963 nationality "American" awards 8
+HSET director:2005 name "Robert Zemeckis" birth_year 1951 nationality "American" awards 7
+HSET director:2006 name "Lana Wachowski" birth_year 1965 nationality "American" awards 4
+HSET director:2007 name "Martin Scorsese" birth_year 1942 nationality "American" awards 15
+HSET director:2008 name "David Fincher" birth_year 1962 nationality "American" awards 9
+HSET director:2009 name "Peter Jackson" birth_year 1961 nationality "New Zealander" awards 12
+HSET director:2010 name "Irvin Kershner" birth_year 1923 nationality "American" awards 2
+HSET director:2011 name "Jonathan Demme" birth_year 1944 nationality "American" awards 5
+HSET director:2012 name "Steven Spielberg" birth_year 1946 nationality "American" awards 18
+HSET director:2013 name "Ridley Scott" birth_year 1937 nationality "British" awards 10
+HSET director:2014 name "Bryan Singer" birth_year 1965 nationality "American" awards 3
+HSET director:2015 name "Roger Allers" birth_year 1949 nationality "American" awards 4
+HSET director:2016 name "Robert Zemeckis" birth_year 1951 nationality "American" awards 7
+HSET director:2017 name "Roman Polanski" birth_year 1933 nationality "Polish-French" awards 9
+HSET director:2018 name "James Cameron" birth_year 1954 nationality "Canadian" awards 11
+HSET director:2019 name "Tony Kaye" birth_year 1952 nationality "British" awards 2
+HSET director:2020 name "Damien Chazelle" birth_year 1985 nationality "American" awards 6
+HSET director:2021 name "Olivier Nakache" birth_year 1973 nationality "French" awards 3
+HSET director:2022 name "Stanley Kubrick" birth_year 1928 nationality "American" awards 7
+HSET director:2023 name "Andrew Stanton" birth_year 1965 nationality "American" awards 5
+HSET director:2024 name "Anthony Russo" birth_year 1970 nationality "American" awards 4
+HSET director:2025 name "Bob Persichetti" birth_year 1973 nationality "American" awards 3
+HSET director:2026 name "Todd Phillips" birth_year 1970 nationality "American" awards 5
+HSET director:2027 name "Bong Joon-ho" birth_year 1969 nationality "South Korean" awards 10
+HSET director:2028 name "Peter Weir" birth_year 1944 nationality "Australian" awards 8
+HSET director:2029 name "Michel Gondry" birth_year 1963 nationality "French" awards 4
+HSET director:2030 name "Wes Anderson" birth_year 1969 nationality "American" awards 7
+HSET director:3001 name "Mel Gibson" birth_year 1956 nationality "American-Australian" awards 6
+HSET director:3002 name "Gus Van Sant" birth_year 1952 nationality "American" awards 5
+HSET director:3003 name "James McTeigue" birth_year 1967 nationality "Australian" awards 2
+HSET director:3004 name "M. Night Shyamalan" birth_year 1970 nationality "American" awards 4
+HSET director:3005 name "George Miller" birth_year 1945 nationality "Australian" awards 8
+HSET director:3006 name "John Lasseter" birth_year 1957 nationality "American" awards 9
+HSET director:3007 name "Denis Villeneuve" birth_year 1967 nationality "Canadian" awards 7
+HSET director:3008 name "Sam Mendes" birth_year 1965 nationality "British" awards 11
+HSET director:3009 name "Paul Thomas Anderson" birth_year 1970 nationality "American" awards 6
+HSET director:3010 name "Alejandro González Iñárritu" birth_year 1963 nationality "Mexican" awards 12
+HSET director:3011 name "Ron Howard" birth_year 1954 nationality "American" awards 8
+HSET director:3012 name "Morten Tyldum" birth_year 1967 nationality "Norwegian" awards 3
+HSET director:3013 name "Lenny Abrahamson" birth_year 1966 nationality "Irish" awards 2
+HSET director:3014 name "Spike Jonze" birth_year 1969 nationality "American" awards 5
+HSET director:3015 name "Nicolas Winding Refn" birth_year 1970 nationality "Danish" awards 4
+HSET director:3016 name "Gabriele Muccino" birth_year 1967 nationality "Italian" awards 2
+HSET director:3017 name "Danny Boyle" birth_year 1956 nationality "British" awards 9
+HSET director:3018 name "Park Chan-wook" birth_year 1963 nationality "South Korean" awards 8
+HSET director:3019 name "Hayao Miyazaki" birth_year 1941 nationality "Japanese" awards 14
+HSET director:3020 name "Makoto Shinkai" birth_year 1973 nationality "Japanese" awards 5
+HSET director:3021 name "Lee Unkrich" birth_year 1967 nationality "American" awards 4
+HSET director:3022 name "Pete Docter" birth_year 1968 nationality "American" awards 7
+HSET director:3023 name "Byron Howard" birth_year 1968 nationality "American" awards 3
+HSET director:3024 name "Brad Bird" birth_year 1957 nationality "American" awards 6
+
+# ============================================
+# ACTORS (Hashes) - 60 actors
+# ============================================
+HSET actor:4001 name "Tim Robbins" birth_year 1958 nationality "American" awards 4
+HSET actor:4002 name "Morgan Freeman" birth_year 1937 nationality "American" awards 9
+HSET actor:4003 name "Marlon Brando" birth_year 1924 nationality "American" awards 12
+HSET actor:4004 name "Al Pacino" birth_year 1940 nationality "American" awards 15
+HSET actor:4005 name "Christian Bale" birth_year 1974 nationality "British" awards 11
+HSET actor:4006 name "Heath Ledger" birth_year 1979 nationality "Australian" awards 8
+HSET actor:4007 name "John Travolta" birth_year 1954 nationality "American" awards 6
+HSET actor:4008 name "Samuel L. Jackson" birth_year 1948 nationality "American" awards 10
+HSET actor:4009 name "Tom Hanks" birth_year 1956 nationality "American" awards 14
+HSET actor:4010 name "Leonardo DiCaprio" birth_year 1974 nationality "American" awards 13
+HSET actor:4011 name "Joseph Gordon-Levitt" birth_year 1981 nationality "American" awards 5
+HSET actor:4012 name "Keanu Reeves" birth_year 1964 nationality "Canadian" awards 7
+HSET actor:4013 name "Robert De Niro" birth_year 1943 nationality "American" awards 16
+HSET actor:4014 name "Ray Liotta" birth_year 1954 nationality "American" awards 3
+HSET actor:4015 name "Matthew McConaughey" birth_year 1969 nationality "American" awards 9
+HSET actor:4016 name "Anne Hathaway" birth_year 1982 nationality "American" awards 8
+HSET actor:4017 name "Brad Pitt" birth_year 1963 nationality "American" awards 12
+HSET actor:4018 name "Edward Norton" birth_year 1969 nationality "American" awards 7
+HSET actor:4019 name "Elijah Wood" birth_year 1981 nationality "American" awards 4
+HSET actor:4020 name "Viggo Mortensen" birth_year 1958 nationality "American-Danish" awards 6
+HSET actor:4021 name "Mark Hamill" birth_year 1951 nationality "American" awards 3
+HSET actor:4022 name "Harrison Ford" birth_year 1942 nationality "American" awards 8
+HSET actor:4023 name "Jodie Foster" birth_year 1962 nationality "American" awards 11
+HSET actor:4024 name "Anthony Hopkins" birth_year 1937 nationality "Welsh" awards 13
+HSET actor:4025 name "Matt Damon" birth_year 1970 nationality "American" awards 10
+HSET actor:4026 name "Tom Cruise" birth_year 1962 nationality "American" awards 7
+HSET actor:4027 name "Liam Neeson" birth_year 1952 nationality "Irish" awards 5
+HSET actor:4028 name "Russell Crowe" birth_year 1964 nationality "New Zealander" awards 9
+HSET actor:4029 name "Kevin Spacey" birth_year 1959 nationality "American" awards 8
+HSET actor:4030 name "Benicio Del Toro" birth_year 1967 nationality "Puerto Rican" awards 6
+HSET actor:4031 name "Jack Nicholson" birth_year 1937 nationality "American" awards 17
+HSET actor:4032 name "Joaquin Phoenix" birth_year 1974 nationality "American" awards 10
+HSET actor:4033 name "Scarlett Johansson" birth_year 1984 nationality "American" awards 9
+HSET actor:4034 name "Robert Downey Jr." birth_year 1965 nationality "American" awards 11
+HSET actor:4035 name "Chris Evans" birth_year 1981 nationality "American" awards 4
+HSET actor:4036 name "Chris Hemsworth" birth_year 1983 nationality "Australian" awards 3
+HSET actor:4037 name "Mark Ruffalo" birth_year 1967 nationality "American" awards 6
+HSET actor:4038 name "Will Smith" birth_year 1968 nationality "American" awards 8
+HSET actor:4039 name "Jaden Smith" birth_year 1998 nationality "American" awards 2
+HSET actor:4040 name "Jim Carrey" birth_year 1962 nationality "Canadian-American" awards 7
+HSET actor:4041 name "Kate Winslet" birth_year 1975 nationality "British" awards 12
+HSET actor:4042 name "Ryan Gosling" birth_year 1980 nationality "Canadian" awards 7
+HSET actor:4043 name "Emma Stone" birth_year 1988 nationality "American" awards 9
+HSET actor:4044 name "Jake Gyllenhaal" birth_year 1980 nationality "American" awards 6
+HSET actor:4045 name "Amy Adams" birth_year 1974 nationality "American" awards 8
+HSET actor:4046 name "Natalie Portman" birth_year 1981 nationality "Israeli-American" awards 10
+HSET actor:4047 name "Cate Blanchett" birth_year 1969 nationality "Australian" awards 14
+HSET actor:4048 name "Daniel Day-Lewis" birth_year 1957 nationality "British-Irish" awards 15
+HSET actor:4049 name "Meryl Streep" birth_year 1949 nationality "American" awards 18
+HSET actor:4050 name "Frances McDormand" birth_year 1957 nationality "American" awards 11
+HSET actor:4051 name "Charlize Theron" birth_year 1975 nationality "South African" awards 9
+HSET actor:4052 name "Jennifer Lawrence" birth_year 1990 nationality "American" awards 8
+HSET actor:4053 name "Brie Larson" birth_year 1989 nationality "American" awards 5
+HSET actor:4054 name "Mahershala Ali" birth_year 1974 nationality "American" awards 6
+HSET actor:4055 name "Michael Fassbender" birth_year 1977 nationality "German-Irish" awards 7
+HSET actor:4056 name "Benedict Cumberbatch" birth_year 1976 nationality "British" awards 8
+HSET actor:4057 name "Eddie Redmayne" birth_year 1982 nationality "British" awards 6
+HSET actor:4058 name "Rami Malek" birth_year 1981 nationality "American" awards 4
+HSET actor:4059 name "Song Kang-ho" birth_year 1967 nationality "South Korean" awards 9
+HSET actor:4060 name "Toshiro Mifune" birth_year 1920 nationality "Japanese" awards 7
+
+# ============================================
+# MOVIE CAST (Sets) - Actors in each movie
+# ============================================
+SADD cast:1001 4001 4002
+SADD cast:1002 4003 4004 4013
+SADD cast:1003 4005 4006 4002
+SADD cast:1004 4007 4008 4017
+SADD cast:1005 4009
+SADD cast:1006 4010 4011 4016
+SADD cast:1007 4012
+SADD cast:1008 4013 4014
+SADD cast:1009 4015 4016
+SADD cast:1010 4017 4018
+SADD cast:1011 4019 4020
+SADD cast:1012 4021 4022
+SADD cast:1013 4023 4024
+SADD cast:1014 4009 4025
+SADD cast:1015 4027
+SADD cast:1016 4005 4010
+SADD cast:1017 4010 4025 4031
+SADD cast:1018 4028
+SADD cast:1019 4009 4002
+SADD cast:1020 4029 4030
+SADD cast:1021 4017 4002
+SADD cast:1023 4055
+SADD cast:1024 4048
+SADD cast:1025 4055
+SADD cast:1026 4018
+SADD cast:1027 4055
+SADD cast:1031 4010 4048
+SADD cast:1033 4034 4035 4036 4037 4033
+SADD cast:1035 4010
+SADD cast:1036 4032
+SADD cast:1037 4059
+SADD cast:1038 4044
+SADD cast:1039 4040
+SADD cast:1040 4040 4041
+SADD cast:1042 3001
+SADD cast:1043 4017
+SADD cast:1044 4025 4017
+SADD cast:1047 4006
+SADD cast:1048 4051
+SADD cast:1051 4056
+SADD cast:1052 4056
+SADD cast:1053 4048
+SADD cast:1056 4017
+SADD cast:1057 4045
+SADD cast:1058 4010
+SADD cast:1059 4009
+SADD cast:1060 4042 4043
+SADD cast:1061 4028
+SADD cast:1062 4056
+SADD cast:1063 4053
+SADD cast:1064 4032
+SADD cast:1066 4010
+SADD cast:1067 4038 4039
+SADD cast:1068 4054
+SADD cast:1070 4055
+SADD cast:1071 4060
+
+# ============================================
+# TOP RATED MOVIES (Sorted Set by rating)
+# ============================================
+ZADD top:rated 9.3 1001
+ZADD top:rated 9.2 1002
+ZADD top:rated 9.0 1003
+ZADD top:rated 9.0 1011
+ZADD top:rated 9.0 1015
+ZADD top:rated 8.9 1004
+ZADD top:rated 8.8 1005
+ZADD top:rated 8.8 1006
+ZADD top:rated 8.8 1010
+ZADD top:rated 8.7 1007
+ZADD top:rated 8.7 1008
+ZADD top:rated 8.7 1012
+ZADD top:rated 8.6 1009
+ZADD top:rated 8.6 1013
+ZADD top:rated 8.6 1014
+ZADD top:rated 8.6 1019
+ZADD top:rated 8.6 1021
+ZADD top:rated 8.6 1025
+ZADD top:rated 8.6 1073
+ZADD top:rated 8.5 1016
+ZADD top:rated 8.5 1017
+ZADD top:rated 8.5 1018
+ZADD top:rated 8.5 1020
+ZADD top:rated 8.5 1022
+ZADD top:rated 8.5 1023
+ZADD top:rated 8.5 1024
+ZADD top:rated 8.5 1026
+ZADD top:rated 8.5 1027
+ZADD top:rated 8.5 1028
+ZADD top:rated 8.5 1037
+ZADD top:rated 8.4 1029
+ZADD top:rated 8.4 1030
+ZADD top:rated 8.4 1031
+ZADD top:rated 8.4 1032
+ZADD top:rated 8.4 1033
+ZADD top:rated 8.4 1034
+ZADD top:rated 8.4 1036
+ZADD top:rated 8.4 1038
+ZADD top:rated 8.4 1071
+ZADD top:rated 8.4 1074
+ZADD top:rated 8.4 1075
+ZADD top:rated 8.4 1076
+
+# ============================================
+# BOX OFFICE RANKINGS (Sorted Set by revenue)
+# ============================================
+ZADD boxoffice:revenue 2797800564 1033
+ZADD boxoffice:revenue 1142456987 1011
+ZADD boxoffice:revenue 1074251311 1036
+ZADD boxoffice:revenue 1023784195 1078
+ZADD boxoffice:revenue 1004558444 1003
+ZADD boxoffice:revenue 968483777 1022
+ZADD boxoffice:revenue 940335536 1079
+ZADD boxoffice:revenue 858846732 1077
+ZADD boxoffice:revenue 829895144 1006
+ZADD boxoffice:revenue 807825344 1076
+ZADD boxoffice:revenue 678226465 1005
+ZADD boxoffice:revenue 677471339 1009
+ZADD boxoffice:revenue 672806292 1047
+ZADD boxoffice:revenue 633019734 1080
+ZADD boxoffice:revenue 538375067 1012
+ZADD boxoffice:revenue 532950503 1058
+ZADD boxoffice:revenue 526940665 1059
+ZADD boxoffice:revenue 521311860 1032
+ZADD boxoffice:revenue 520881154 1025
+ZADD boxoffice:revenue 482349603 1014
+ZADD boxoffice:revenue 463517383 1007
+ZADD boxoffice:revenue 460583960 1018
+ZADD boxoffice:revenue 447399601 1060
+ZADD boxoffice:revenue 426588510 1028
+ZADD boxoffice:revenue 425368238 1031
+ZADD boxoffice:revenue 392000694 1035
+ZADD boxoffice:revenue 384577201 1052
+ZADD boxoffice:revenue 384299543 1034
+ZADD boxoffice:revenue 381109762 1023
+ZADD boxoffice:revenue 378858340 1048
+ZADD boxoffice:revenue 378408578 1068
+ZADD boxoffice:revenue 373554033 1049
+ZADD boxoffice:revenue 369330363 1056
+ZADD boxoffice:revenue 357984193 1075
+ZADD boxoffice:revenue 355467346 1073
+ZADD boxoffice:revenue 327311859 1021
+ZADD boxoffice:revenue 322161245 1015
+ZADD boxoffice:revenue 321457747 1043
+ZADD boxoffice:revenue 313542341 1061
+ZADD boxoffice:revenue 307127625 1067
+ZADD boxoffice:revenue 294805697 1066
+ZADD boxoffice:revenue 291465034 1017
+ZADD boxoffice:revenue 286801374 1019
+ZADD boxoffice:revenue 272742922 1013
+ZADD boxoffice:revenue 267718858 1050
+ZADD boxoffice:revenue 264118201 1039
+ZADD boxoffice:revenue 258926582 1037
+ZADD boxoffice:revenue 233555708 1062
+ZADD boxoffice:revenue 225933435 1044
+
+# ============================================
+# MOVIES BY GENRE (Sets)
+# ============================================
+SADD genre:drama 1001 1002 1003 1004 1005 1008 1009 1010 1011 1013 1014 1015 1017 1018 1019 1021 1022 1024 1026 1027 1028 1029 1030 1031 1033 1035 1036 1037 1038 1039 1040 1041 1042 1043 1044 1045 1046 1047 1050 1051 1053 1054 1056 1057 1058 1059 1061 1062 1063 1064 1065 1066 1067 1068 1069 1070 1071 1072 1073 1075
+SADD genre:crime 1002 1003 1004 1008 1013 1017 1019 1020 1021 1026 1031 1035 1036 1041 1046 1054 1055
+SADD genre:action 1003 1006 1007 1012 1018 1025 1033 1045 1048 1050 1058 1059 1065 1071 1074 1080
+SADD genre:thriller 1006 1013 1016 1017 1020 1021 1036 1038 1045 1047 1052 1054 1056 1062 1063 1066 1072
+SADD genre:sci-fi 1006 1007 1009 1023 1025 1032 1039 1040 1048 1050 1057 1064
+SADD genre:comedy 1023 1037 1039 1041 1049 1055 1060 1076 1077 1078 1079 1080
+SADD genre:adventure 1009 1011 1012 1022 1023 1032 1033 1034 1041 1043 1048 1049 1058 1073 1074 1076 1077 1078 1079 1080
+SADD genre:fantasy 1011 1012 1019 1073 1075
+SADD genre:animation 1022 1032 1034 1049 1073 1074 1075 1076 1077 1078 1079 1080
+SADD genre:biography 1015 1024 1028 1035 1042 1051 1061 1062 1067 1069
+SADD genre:romance 1005 1039 1040 1044 1060 1064 1068 1072
+SADD genre:war 1014 1030 1043 1052
+SADD genre:horror 1029
+SADD genre:mystery 1016 1020 1021 1038 1047 1050 1054 1056 1057 1071
+SADD genre:western 1031
+SADD genre:music 1024 1027 1060
