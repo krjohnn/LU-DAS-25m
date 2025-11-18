@@ -77,13 +77,24 @@ def main():
     if not r:
         return
 
-    run_cli_script_seq(r, filename="create_movie_db.redis")
+    # run_cli_script_seq(r, filename="create_movie_db.redis")
 
     # Add 100 entries - Done
     # Edit 50 entires - To Do
     # Select 50 entries - To Do
     # Delete 50 entries - To Do
 
+    # hset(movie_key, "genre", new_genre_string)
+
+    r.hset("movie:1001", "year", "1994")
+
+    movie_cnt = 0
+    movies = (r.keys("movie:*"))
+    for movie_key in movies:
+        movie_cnt = movie_cnt+1
+        print(movie_cnt)
+        movie_data = r.hgetall(movie_key)
+        print(f"{movie_key}: {movie_data}")
 
     r.close()
     return
