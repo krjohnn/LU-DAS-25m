@@ -1,16 +1,9 @@
-"""Basic connection example.
-"""
-
 import redis
 from typing import List, Dict, Any
 import json
 import os
 import shlex
 from dotenv import load_dotenv
-
-# ============================================
-# CONNECTION SETUP
-# ============================================
 
 def connect_to_redis():
     """Connect to Redis (adjust host/port as needed)"""
