@@ -33,7 +33,7 @@ def connect_to_redis():
         print("Could not connect to Redis")
         return None
 
-def run_import_json(filename="data.json"):
+def load_json(filename="data.json"):
     try:
         print(f"Loading JSON data from {filename}...")
         with open(filename, 'r', encoding='utf-8') as f:
@@ -76,7 +76,7 @@ def main():
     if not r:
         return
 
-    json_data = run_import_json(filename="llm_data_import.json")
+    json_data = load_json(filename="llm_data_import.json")
 
     # Add 100 entries - Done
     if(r.dbsize() == 0):
