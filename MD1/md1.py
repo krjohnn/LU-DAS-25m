@@ -35,27 +35,55 @@ def connect_to_redis():
 
 def run_import_json(filename="data.json"):
     try:
+        print(f"Loading JSON data from {filename}...")
         with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)
+            return data
     except FileNotFoundError:
         print(f"File {filename} not found.")
-        return
+        raise
     except json.decoder.JSONDecodeError:
         print(f"Error decoding JSON from file {filename}.")
-        return
+        raise
+
+def import_movie_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
+    for movie in json_data.get("movies", []):
+        movie_id = movie.get("id")
+        if movie_id:
+            r.hset(f"movie:{movie_id}", mapping=movie)
+    print(f"Imported {len(json_data.get('movies', []))} movies into Redis.")
+
+def import_director_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
+    for director in json_data.get("directors", []):
+        director_id = director.get("id")
+        if director.get("awards"):
+            director["awards"] = ', '.join(director.get("awards"))
+        if director_id:
+            r.hset(f"director:{director_id}", mapping=director)
+    print(f"Imported {len(json_data.get('directors', []))} directors into Redis.")
+
+def import_actor_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
+    for actor in json_data.get("actors", []):
+        actor_id = actor.get("id")
+        if actor.get("awards"):
+            actor["awards"] = ', '.join(actor.get("awards"))
+        if actor_id:
+            r.hset(f"actors:{actor_id}", mapping=actor)
+    print(f"Imported {len(json_data.get('actors', []))} actors into Redis.")
 
 def main():
     r = connect_to_redis()
     if not r:
         return
 
-    print("Importing core JSON data into Redis...")
-    run_import_json(filename="llm_data_import.json")
+    json_data = run_import_json(filename="llm_data_import.json")
 
     # Add 100 entries - Done
     if(r.dbsize() == 0):
         print("Redis database is empty. Inserting movie data...")
-        #run_cli_script_seq(r, filename="create_movie_db.redis")
+        import_movie_data(r, json_data)
+        import_director_data(r, json_data)
+        import_actor_data(r, json_data)
 
     else:
         print(f"Redis database is not empty: {r.dbsize()} entries found.")
