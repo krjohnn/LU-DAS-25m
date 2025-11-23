@@ -1,0 +1,32 @@
+Generate the following JSON dataset.
+
+80 Movies with following keys
+- id (4 digits that start with "1")
+- title (string)
+- year
+- runtime (minutes)
+- genre
+- director_id (4 digits that start with "2")
+- rating (float with 1 decimal point)
+- votes
+- revenue
+- budget
+
+30 Directors with following keys
+- id (4 digits that start with "2")
+- name
+- birth_year
+- nationality
+- awards
+
+60 Actors
+- id (4 digits that start with "3")
+- name
+- birth_year
+- nationality
+- awards
+
+Output entire dataset in chunks. Preferably in a file if you can. Do not pause. 
+
+---------------------------------------------
+https://gemini.google.com/share/9854b7ef408e

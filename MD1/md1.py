@@ -40,61 +40,40 @@ def connect_to_redis():
         print("Could not connect to Redis")
         return None
 
-
-def run_cli_script_seq(r, filename="data.redis"):
-    if not r:
+def run_import_json(filename="data.json"):
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        print(f"File {filename} not found.")
+        return
+    except json.decoder.JSONDecodeError:
+        print(f"Error decoding JSON from file {filename}.")
         return
 
-    print(f"Opening script file: {filename}")
-    command_count = 0
-    try:
-        with open(filename, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-
-                try:
-                    parts = shlex.split(line)
-                    r.execute_command(*parts)
-                    command_count += 1
-
-                except redis.exceptions.RedisError as e:
-                    print(f"Error running command: {line}")
-                    print(f"Redis error: {e}")
-
-        print(f"\nSuccessfully executed {command_count} commands one by one.")
-
-    except FileNotFoundError:
-        print(f"Error: The file '{filename}' was not found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-
 def main():
-    """Run sample operations and reports"""
     r = connect_to_redis()
     if not r:
         return
 
-    # run_cli_script_seq(r, filename="create_movie_db.redis")
+    print("Importing core JSON data into Redis...")
+    run_import_json(filename="llm_data_import.json")
 
     # Add 100 entries - Done
+    if(r.dbsize() == 0):
+        print("Redis database is empty. Inserting movie data...")
+        #run_cli_script_seq(r, filename="create_movie_db.redis")
+
+    else:
+        print(f"Redis database is not empty: {r.dbsize()} entries found.")
+        print(f"Flush the database to re-insert movie data.")
+        r.flushall()
+
     # Edit 50 entires - To Do
+
     # Select 50 entries - To Do
+
     # Delete 50 entries - To Do
-
-    # hset(movie_key, "genre", new_genre_string)
-
-    r.hset("movie:1001", "year", "1994")
-
-    movie_cnt = 0
-    movies = (r.keys("movie:*"))
-    for movie_key in movies:
-        movie_cnt = movie_cnt+1
-        print(movie_cnt)
-        movie_data = r.hgetall(movie_key)
-        print(f"{movie_key}: {movie_data}")
 
     r.close()
     return
