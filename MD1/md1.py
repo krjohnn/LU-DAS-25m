@@ -2,7 +2,6 @@ import redis
 from typing import List, Dict, Any
 import json
 import os
-import shlex
 from dotenv import load_dotenv
 
 def connect_to_redis():
@@ -77,21 +76,38 @@ def import_actor_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
             r.hset(f"actors:{actor_id}", mapping=actor)
     print(f"Imported {len(json_data.get('actors', []))} actors into Redis.")
 
+def update_movie_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
+    for movie in json_data.get("movies", []):
+        movie_id = movie.get("id")
+        r.hset(f"movie:{movie_id}", mapping=movie)
+        if 'revenue' in movie:
+            r.zadd("boxoffice:revenue", {movie_id: movie['revenue']})
+        if 'rating' in movie:
+            r.zadd("top:rated", {movie_id: movie['rating']})
+        if 'genre' in movie:
+            r.sadd(f"genre:{movie['genre']}", movie_id)
+        # print(f"Updated movie {movie_id} with data: {movie}")
+    print(f"Updated {len(json_data.get('movies', []))} movies in Redis.")
+
 def main():
     r = connect_to_redis()
     if not r:
         return
 
-    json_data = load_json(filename="llm_data_import.json")
-
     if(r.dbsize() == 0):
         print("Redis database is empty. Inserting movie data...")
+
         # Add 100 entries - Done
+        json_data = load_json(filename="in_import_data.json")
+
         import_movie_data(r, json_data)
         import_director_data(r, json_data)
         import_actor_data(r, json_data)
 
-        # Edit 50 entires - To Do
+        # Edit 50 entires - To D
+        json_data = load_json(filename="in_update_data.json")
+
+        update_movie_data(r, json_data)
 
         # Select 50 entries - To Do
 
