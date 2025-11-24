@@ -1,35 +1,29 @@
-import redis
 from typing import List, Dict, Any
 import json
 import os
 from dotenv import load_dotenv
+from neo4j import GraphDatabase
+
 
 def connect_to_neo4j():
-    """Connect to Redis (adjust host/port as needed)"""
     load_dotenv()
 
-    redis_host = os.getenv("REDIS_HOST")
-    redis_port = os.getenv("REDIS_PORT")
-    redis_user = os.getenv("REDIS_USER")
-    redis_password = os.getenv("REDIS_PASSWORD")
+    neo4j_host = os.getenv("NEO4J_HOST")
+    neo4j_user = os.getenv("NEO4J_USER")
+    neo4j_password = os.getenv("NEO4J_PASSWORD")
 
-    if not all([redis_host, redis_port, redis_user, redis_password]):
+    if not all([neo4j_host, neo4j_user, neo4j_password]):
         print("Error: Required environment variables are not set.")
         return None
 
-    r = redis.Redis(
-        host=redis_host,
-        port=redis_port,
-        decode_responses=True,
-        username=redis_user,
-        password=redis_password,
-    )
     try:
-        r.ping()
-        print("Connected to Redis successfully!\n")
-        return r
-    except redis.ConnectionError:
-        print("Could not connect to Redis")
+        n = GraphDatabase.driver(neo4j_host, auth=(neo4j_user, neo4j_password))
+        n.verify_connectivity()
+        print("Connected to neo4j successfully!\n")
+        return n
+
+    except Exception as e:
+        print(f"Failed to connect to neo4j: {e}")
         return None
 
 def load_json(filename="data.json"):
@@ -46,11 +40,23 @@ def load_json(filename="data.json"):
         raise
 
 def main():
-    r = connect_to_redis()
-    if not r:
+    n = connect_to_neo4j()
+    if not n:
         return
 
-    r.close()
+    with n.session() as session:
+        summary = n.execute_query("""
+            CREATE (a:Person {name: $name})
+            CREATE (b:Person {name: $friendName})
+            CREATE (a)-[:KNOWS]->(b)
+            """, name="Alice", friendName="David", database_="neo4j", ).summary
+        print("Created {nodes_created} nodes in {time} ms.".format(
+            nodes_created=summary.counters.nodes_created,
+            time=summary.result_available_after
+        ))
+
+        n.close()
+
     return
 
 if __name__ == "__main__":
