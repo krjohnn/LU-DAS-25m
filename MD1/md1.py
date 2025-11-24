@@ -99,6 +99,22 @@ def delete_movie_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
             r.srem(f"genre:{movie['genre']}", movie_id)
     print(f"Deleted {len(json_data.get('movies', []))} movies from Redis.")
 
+def select_movie_data_by_name(r: redis.Redis, movie_name: List) -> None:
+    movie_id = r.keys(f"movie:*")
+    for mid in movie_id:
+        movie = r.hgetall(mid)
+        if movie.get("title") in movie_name:
+            print(f"\nMovie Data for '{movie.get("title")}':")
+            for(key, value) in movie.items():
+                print(f"{key}: {value}")
+
+def select_top_n_movies_by_revenue(r: redis.Redis, n: int) -> None:
+    top_movies = r.zrevrange("boxoffice:revenue", 0, n-1, withscores=True)
+    print(f"\nTop {n} Movies by Revenue:")
+    for movie_id, revenue in top_movies:
+        movie = r.hgetall(f"movie:{movie_id}")
+        print(f"Title: {movie.get('title')}, Revenue: {revenue}")
+
 def main():
     r = connect_to_redis()
     if not r:
@@ -120,6 +136,8 @@ def main():
         update_movie_data(r, json_data)
 
         # Select 50 entries - To Do
+        select_movie_data_by_name(r, movie_name=["Pulp Fiction", "Inception", "Interstellar", "The Dark Knight", "Forrest Gump", "The Matrix", "The Shawshank Redemption", "The Godfather", "The Lord of the Rings: The Return of the King", "Fight Club"])
+        select_top_n_movies_by_revenue(r, 10)
 
         # Delete 50 entries - To Do
         json_data = load_json(filename="in_delete_data.json")
