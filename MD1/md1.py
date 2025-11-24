@@ -132,6 +132,16 @@ def select_movies_by_genre(r: redis.Redis, genre: str) -> None:
         movie = r.hgetall(f"movie:{movie_id}")
         print(f"Title: {movie.get('title')}")
 
+def find_actors_with_award(r: redis.Redis, find_award: str) -> None:
+    print(f"\nActors with Award '{find_award}':")
+    actors_id = r.scan_iter(f"actors:*")
+    for aid in actors_id:
+        actor = r.hgetall(aid)
+        if find_award in actor.get("awards"):
+            print("\nActor details:")
+            for key, value in actor.items():
+                print(f"{key}: {value}")
+
 def main():
     r = connect_to_redis()
     if not r:
@@ -155,6 +165,7 @@ def main():
         select_top_n_movies_by_revenue(r, "top",10)
         select_top_n_movies_by_revenue(r, "bottom", 10)
         select_movies_by_genre(r, "Sci-Fi")
+        find_actors_with_award(r, "Emmy")
 
         # Delete 50 entries - To Do
         json_data = load_json(filename="in_delete_data.json")
