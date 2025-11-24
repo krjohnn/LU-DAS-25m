@@ -89,12 +89,22 @@ def update_movie_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
         # print(f"Updated movie {movie_id} with data: {movie}")
     print(f"Updated {len(json_data.get('movies', []))} movies in Redis.")
 
+def delete_movie_data(r: redis.Redis, json_data: List[Dict[str, Any]]) -> None:
+    for movie in json_data.get("movies", []):
+        movie_id = movie.get("id")
+        r.delete(f"movie:{movie_id}")
+        r.zrem("boxoffice:revenue", movie_id)
+        r.zrem("top:rated", movie_id)
+        if 'genre' in movie:
+            r.srem(f"genre:{movie['genre']}", movie_id)
+    print(f"Deleted {len(json_data.get('movies', []))} movies from Redis.")
+
 def main():
     r = connect_to_redis()
     if not r:
         return
 
-    if(r.dbsize() == 0):
+    if(r.dbsize() != 0):
         print("Redis database is empty. Inserting movie data...")
 
         # Add 100 entries - Done
@@ -112,6 +122,9 @@ def main():
         # Select 50 entries - To Do
 
         # Delete 50 entries - To Do
+        json_data = load_json(filename="in_delete_data.json")
+
+        delete_movie_data(r, json_data)
 
     else:
         print(f"Redis database is not empty: {r.dbsize()} entries found.")
