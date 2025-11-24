@@ -137,7 +137,7 @@ def main():
     if not r:
         return
 
-    if(r.dbsize() != 0):
+    if(r.dbsize() == 0):
         print("Redis database is empty. Inserting movie data...")
 
         # Add 100 entries - Done
