@@ -1,0 +1,579 @@
+{
+  "metadata": {
+    "country": "Latvia",
+    "currency": "EUR",
+    "date_generated": "2023-10-27"
+  },
+  "insurance_companies": [
+    {
+      "id": "COMP-001",
+      "name": "Balta AAS",
+      "address": "Raunas iela 10, Rīga, LV-1039",
+      "contact_email": "info@balta.lv"
+    },
+    {
+      "id": "COMP-002",
+      "name": "BTA Baltic Insurance Company",
+      "address": "Sporta iela 11, Rīga, LV-1013",
+      "contact_email": "bta@bta.lv"
+    },
+    {
+      "id": "COMP-003",
+      "name": "ERGO Insurance SE",
+      "address": "Skanstes iela 50, Rīga, LV-1013",
+      "contact_email": "info@ergo.lv"
+    },
+    {
+      "id": "COMP-004",
+      "name": "If P&C Insurance",
+      "address": "Republikas laukums 2A, Rīga, LV-1010",
+      "contact_email": "info@if.lv"
+    },
+    {
+      "id": "COMP-005",
+      "name": "Gjensidige Latvija",
+      "address": "Gustava Zemgala gatve 74A, Rīga, LV-1039",
+      "contact_email": "info@gjensidige.lv"
+    }
+  ],
+  "persons": [
+    { "social_security_number": "120585-11223", "full_name": "Jānis Bērziņš", "date_of_birth": "1985-05-12", "address": "Brīvības iela 12-5, Rīga, LV-1010", "phone_number": "+371 29123456", "risk_level": 2 },
+    { "social_security_number": "230892-10445", "full_name": "Līga Kalniņa", "date_of_birth": "1992-08-23", "address": "Lielā iela 45, Jelgava, LV-3001", "phone_number": "+371 26456789", "risk_level": 1 },
+    { "social_security_number": "050175-12334", "full_name": "Andris Ozoliņš", "date_of_birth": "1975-01-05", "address": "Rīgas iela 4, Valmiera, LV-4201", "phone_number": "+371 29988776", "risk_level": 8 },
+    { "social_security_number": "140200-21009", "full_name": "Zane Liepiņa", "date_of_birth": "2000-02-14", "address": "Kurzemes prospekts 120, Rīga, LV-1069", "phone_number": "+371 25544332", "risk_level": 5 },
+    { "social_security_number": "301188-11998", "full_name": "Mārtiņš Kļaviņš", "date_of_birth": "1988-11-30", "address": "Saules iela 8, Daugavpils, LV-5401", "phone_number": "+371 22334455", "risk_level": 3 },
+    { "social_security_number": "190695-10556", "full_name": "Ieva Vanaga", "date_of_birth": "1995-06-19", "address": "Jūras iela 2, Ventspils, LV-3601", "phone_number": "+371 27766554", "risk_level": 0 },
+    { "social_security_number": "020280-12211", "full_name": "Kārlis Zariņš", "date_of_birth": "1980-02-02", "address": "Pasta iela 15, Liepāja, LV-3401", "phone_number": "+371 28899001", "risk_level": 9 },
+    { "social_security_number": "150999-10022", "full_name": "Elīna Vītola", "date_of_birth": "1999-09-15", "address": "Tallinas iela 56, Rīga, LV-1009", "phone_number": "+371 24455667", "risk_level": 4 },
+    { "social_security_number": "101070-13005", "full_name": "Valdis Balodis", "date_of_birth": "1970-10-10", "address": "Siguldas šoseja 3, Berģi, LV-1024", "phone_number": "+371 29001122", "risk_level": 1 },
+    { "social_security_number": "251283-11447", "full_name": "Dace Krūmiņa", "date_of_birth": "1983-12-25", "address": "Miera iela 9, Rīga, LV-1001", "phone_number": "+371 26677889", "risk_level": 2 },
+    { "social_security_number": "010191-20202", "full_name": "Artūrs Priede", "date_of_birth": "1991-01-01", "address": "Dārza iela 5, Cēsis, LV-4101", "phone_number": "+371 25566778", "risk_level": 7 },
+    { "social_security_number": "181178-10999", "full_name": "Inga Ābele", "date_of_birth": "1978-11-18", "address": "Maskavas iela 250, Rīga, LV-1063", "phone_number": "+371 29900887", "risk_level": 3 },
+    { "social_security_number": "070702-21555", "full_name": "Oskars Lācis", "date_of_birth": "2002-07-07", "address": "Vienības gatve 40, Rīga, LV-1004", "phone_number": "+371 22233111", "risk_level": 6 },
+    { "social_security_number": "110486-12345", "full_name": "Kristīne Gulbe", "date_of_birth": "1986-04-11", "address": "Zvaigžņu iela 7, Rīga, LV-1009", "phone_number": "+371 28877665", "risk_level": 1 },
+    { "social_security_number": "220993-11888", "full_name": "Edgars Vilks", "date_of_birth": "1993-09-22", "address": "Parka iela 10, Ogre, LV-5001", "phone_number": "+371 27788990", "risk_level": 8 },
+    { "social_security_number": "130365-13444", "full_name": "Anita Celmiņa", "date_of_birth": "1965-03-13", "address": "Rīgas iela 15, Bauska, LV-3901", "phone_number": "+371 26543210", "risk_level": 2 },
+    { "social_security_number": "290589-10667", "full_name": "Kaspars Sils", "date_of_birth": "1989-05-29", "address": "Tērbatas iela 30, Rīga, LV-1011", "phone_number": "+371 29876543", "risk_level": 4 },
+    { "social_security_number": "040896-20777", "full_name": "Laura Eglīte", "date_of_birth": "1996-08-04", "address": "Jomas iela 50, Jūrmala, LV-2015", "phone_number": "+371 23344556", "risk_level": 3 },
+    { "social_security_number": "161281-12999", "full_name": "Raivis Dumpis", "date_of_birth": "1981-12-16", "address": "Ganību dambis 10, Rīga, LV-1045", "phone_number": "+371 21122334", "risk_level": 9 },
+    { "social_security_number": "280298-10111", "full_name": "Sanita Briede", "date_of_birth": "1998-02-28", "address": "Skolas iela 2, Sigulda, LV-2150", "phone_number": "+371 29911223", "risk_level": 1 }
+  ],
+  "policies": [
+    { "policy_id": "POL-23-001", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-01-01", "end_date": "2024-01-01", "insured_person": "120585-11223", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-002", "policy_type": "premium", "type_of_insurance": "KASKO", "start_date": "2023-01-01", "end_date": "2024-01-01", "insured_person": "120585-11223", "deductible_amount": 140, "coverage_amount": 15000 },
+    { "policy_id": "POL-23-003", "policy_type": "basic", "type_of_insurance": "OCTA", "start_date": "2023-02-15", "end_date": "2024-02-15", "insured_person": "230892-10445", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-004", "policy_type": "premium", "type_of_insurance": "KASKO", "start_date": "2023-03-10", "end_date": "2024-03-10", "insured_person": "050175-12334", "deductible_amount": 200, "coverage_amount": 45000 },
+    { "policy_id": "POL-23-005", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-03-10", "end_date": "2024-03-10", "insured_person": "050175-12334", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-006", "policy_type": "basic", "type_of_insurance": "OCTA", "start_date": "2023-04-01", "end_date": "2023-10-01", "insured_person": "140200-21009", "deductible_amount": 0, "coverage_amount": 2500000 },
+    { "policy_id": "POL-23-007", "policy_type": "standard", "type_of_insurance": "KASKO", "start_date": "2023-05-20", "end_date": "2024-05-20", "insured_person": "301188-11998", "deductible_amount": 140, "coverage_amount": 12000 },
+    { "policy_id": "POL-23-008", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-06-01", "end_date": "2024-06-01", "insured_person": "020280-12211", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-009", "policy_type": "basic", "type_of_insurance": "OCTA", "start_date": "2023-06-15", "end_date": "2024-06-15", "insured_person": "251283-11447", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-010", "policy_type": "premium", "type_of_insurance": "KASKO", "start_date": "2023-07-01", "end_date": "2024-07-01", "insured_person": "010191-20202", "deductible_amount": 100, "coverage_amount": 22000 },
+    { "policy_id": "POL-23-011", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-07-01", "end_date": "2024-07-01", "insured_person": "010191-20202", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-012", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-08-10", "end_date": "2024-08-10", "insured_person": "181178-10999", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-013", "policy_type": "basic", "type_of_insurance": "OCTA", "start_date": "2023-09-01", "end_date": "2024-09-01", "insured_person": "220993-11888", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-014", "policy_type": "premium", "type_of_insurance": "KASKO", "start_date": "2023-09-01", "end_date": "2024-09-01", "insured_person": "220993-11888", "deductible_amount": 300, "coverage_amount": 35000 },
+    { "policy_id": "POL-23-015", "policy_type": "standard", "type_of_insurance": "OCTA", "start_date": "2023-10-05", "end_date": "2024-10-05", "insured_person": "161281-12999", "deductible_amount": 0, "coverage_amount": 5000000 },
+    { "policy_id": "POL-23-016", "policy_type": "basic", "type_of_insurance": "OCTA", "start_date": "2023-11-01", "end_date": "2024-11-01", "insured_person": "280298-10111", "deductible_amount": 0, "coverage_amount": 5000000 }
+  ],
+  "cars": [
+    { "registration_number": "AB-1234", "make": "Volkswagen", "model": "Passat", "year": 2015, "owner": "120585-11223", "vin": "WVWZZZ3CZFE012345", "technical_inspection_date": "2023-05-10", "technical_inspection_end_date": "2024-05-10", "policy_number": ["POL-23-001", "POL-23-002"] },
+    { "registration_number": "KL-9876", "make": "Toyota", "model": "Corolla", "year": 2018, "owner": "230892-10445", "vin": "JTDKN32U500112233", "technical_inspection_date": "2023-02-01", "technical_inspection_end_date": "2025-02-01", "policy_number": ["POL-23-003"] },
+    { "registration_number": "MN-5555", "make": "BMW", "model": "X5", "year": 2020, "owner": "050175-12334", "vin": "5UXCR5C00L0554433", "technical_inspection_date": "2022-11-15", "technical_inspection_end_date": "2024-11-15", "policy_number": ["POL-23-004", "POL-23-005"] },
+    { "registration_number": "OP-1122", "make": "Opel", "model": "Astra", "year": 2008, "owner": "140200-21009", "vin": "W0L0AHL4885123456", "technical_inspection_date": "2023-08-20", "technical_inspection_end_date": "2024-08-20", "policy_number": ["POL-23-006"] },
+    { "registration_number": "VV-3030", "make": "Volvo", "model": "V70", "year": 2012, "owner": "301188-11998", "vin": "YV1BW7340A1122334", "technical_inspection_date": "2023-04-12", "technical_inspection_end_date": "2024-04-12", "policy_number": ["POL-23-007"] },
+    { "registration_number": "GA-7777", "make": "Audi", "model": "A4", "year": 2005, "owner": "020280-12211", "vin": "WAUZZZ8E55A098765", "technical_inspection_date": "2023-01-10", "technical_inspection_end_date": "2024-01-10", "policy_number": ["POL-23-008"] },
+    { "registration_number": "EZ-4444", "make": "Nissan", "model": "Qashqai", "year": 2016, "owner": "251283-11447", "vin": "SJNFAA10U11223344", "technical_inspection_date": "2023-06-30", "technical_inspection_end_date": "2025-06-30", "policy_number": ["POL-23-009"] },
+    { "registration_number": "JF-2022", "make": "Skoda", "model": "Octavia", "year": 2022, "owner": "010191-20202", "vin": "TMBJJ7NE3L0099887", "technical_inspection_date": "2022-01-15", "technical_inspection_end_date": "2024-01-15", "policy_number": ["POL-23-010", "POL-23-011"] },
+    { "registration_number": "RS-1999", "make": "Ford", "model": "Focus", "year": 2010, "owner": "181178-10999", "vin": "WF0PXXGCDP9A12345", "technical_inspection_date": "2023-09-05", "technical_inspection_end_date": "2024-09-05", "policy_number": ["POL-23-012"] },
+    { "registration_number": "BB-8888", "make": "BMW", "model": "320", "year": 2003, "owner": "220993-11888", "vin": "WBAAP71030F123456", "technical_inspection_date": "2023-03-20", "technical_inspection_end_date": "2024-03-20", "policy_number": ["POL-23-013", "POL-23-014"] },
+    { "registration_number": "TO-1010", "make": "Toyota", "model": "RAV4", "year": 2019, "owner": "161281-12999", "vin": "JTMZBREV400112233", "technical_inspection_date": "2023-07-15", "technical_inspection_end_date": "2025-07-15", "policy_number": ["POL-23-015"] },
+    { "registration_number": "MK-5678", "make": "Volkswagen", "model": "Golf", "year": 2014, "owner": "280298-10111", "vin": "WVWZZZ1KZDW054321", "technical_inspection_date": "2023-10-01", "technical_inspection_end_date": "2024-10-01", "policy_number": ["POL-23-016"] },
+    { "registration_number": "LG-2345", "make": "Honda", "model": "CR-V", "year": 2017, "owner": "130365-13444", "vin": "SHSRE58507U012345", "technical_inspection_date": "2023-05-05", "technical_inspection_end_date": "2025-05-05", "policy_number": [] },
+    { "registration_number": "HD-9900", "make": "Hyundai", "model": "Tucson", "year": 2021, "owner": "290589-10667", "vin": "TMAJ381AUHJ123456", "technical_inspection_date": "2021-08-10", "technical_inspection_end_date": "2023-08-10", "policy_number": [] },
+    { "registration_number": "MA-3322", "make": "Mazda", "model": "6", "year": 2013, "owner": "040896-20777", "vin": "JMZGJ123401122334", "technical_inspection_date": "2023-11-20", "technical_inspection_end_date": "2024-11-20", "policy_number": [] }
+  ],
+  "accidents": [
+    {
+      "accident_id": "ACC-23-001",
+      "date": "2023-01-15T08:30:00",
+      "location": { "lat": 56.9496, "lon": 24.1052, "desc": "Rīga, Krasta iela" },
+      "involved_cars": [
+        { "registration_number": "AB-1234", "owner": "120585-11223", "damage_level": 3, "damage_description": "Rear bumper dent", "at_fault_party": "020280-12211" },
+        { "registration_number": "GA-7777", "owner": "020280-12211", "damage_level": 5, "damage_description": "Front bumper and headlight smashed", "at_fault_party": "020280-12211" }
+      ],
+      "involved_persons": [
+        { "ssn": "120585-11223", "role": "driver", "injuries": "none" },
+        { "ssn": "020280-12211", "role": "driver", "injuries": "minor" }
+      ],
+      "weather_conditions": "Sniegs, slideni ceļi",
+      "description": "Rear-end collision due to insufficient braking distance on icy road.",
+      "severity_level": 3
+    },
+    {
+      "accident_id": "ACC-23-002",
+      "date": "2023-02-10T18:45:00",
+      "location": { "lat": 56.6511, "lon": 23.7194, "desc": "Jelgava, Lielā iela" },
+      "involved_cars": [
+        { "registration_number": "KL-9876", "owner": "230892-10445", "damage_level": 2, "damage_description": "Side mirror broken", "at_fault_party": "190695-10556" }
+      ],
+      "involved_persons": [
+        { "ssn": "230892-10445", "role": "driver", "injuries": "none" },
+        { "ssn": "190695-10556", "role": "pedestrian", "injuries": "minor" }
+      ],
+      "weather_conditions": "Tumšs, viegls lietus",
+      "description": "Car clipped a pedestrian crossing the street unexpectedly.",
+      "severity_level": 4
+    },
+    {
+      "accident_id": "ACC-23-003",
+      "date": "2023-03-05T14:20:00",
+      "location": { "lat": 56.9194, "lon": 24.0886, "desc": "Rīga, Mūkusalas aplis" },
+      "involved_cars": [
+        { "registration_number": "MN-5555", "owner": "050175-12334", "damage_level": 7, "damage_description": "Side door heavily damaged", "at_fault_party": "220993-11888" },
+        { "registration_number": "BB-8888", "owner": "220993-11888", "damage_level": 8, "damage_description": "Frontal damage, radiator leak", "at_fault_party": "220993-11888" }
+      ],
+      "involved_persons": [
+        { "ssn": "050175-12334", "role": "driver", "injuries": "minor" },
+        { "ssn": "220993-11888", "role": "driver", "injuries": "minor" },
+        { "ssn": "290589-10667", "role": "passenger", "injuries": "severe" }
+      ],
+      "weather_conditions": "Saulains",
+      "description": "Failure to yield at roundabout.",
+      "severity_level": 6
+    },
+    {
+      "accident_id": "ACC-23-004",
+      "date": "2023-03-22T09:00:00",
+      "location": { "lat": 57.5388, "lon": 25.4214, "desc": "Valmiera, Rīgas iela" },
+      "involved_cars": [
+        { "registration_number": "OP-1122", "owner": "140200-21009", "damage_level": 1, "damage_description": "Scratch on bumper", "at_fault_party": "140200-21009" }
+      ],
+      "involved_persons": [
+        { "ssn": "140200-21009", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Apmācies",
+      "description": "Hit a parking post while reversing.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-005",
+      "date": "2023-04-15T22:10:00",
+      "location": { "lat": 56.9460, "lon": 24.1059, "desc": "Rīga, 11. novembra krastmala" },
+      "involved_cars": [
+        { "registration_number": "BB-8888", "owner": "220993-11888", "damage_level": 6, "damage_description": "Wheel axle broken", "at_fault_party": "220993-11888" }
+      ],
+      "involved_persons": [
+        { "ssn": "220993-11888", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Drifting attempt gone wrong, hit curb. Repeat offender.",
+      "severity_level": 5
+    },
+    {
+      "accident_id": "ACC-23-006",
+      "date": "2023-05-01T12:00:00",
+      "location": { "lat": 56.5099, "lon": 21.0111, "desc": "Liepāja, Klaipēdas iela" },
+      "involved_cars": [
+        { "registration_number": "GA-7777", "owner": "020280-12211", "damage_level": 4, "damage_description": "Windshield broken", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "020280-12211", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Vējains, krusa",
+      "description": "Tree branch fell on the car.",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-007",
+      "date": "2023-05-12T16:30:00",
+      "location": { "lat": 56.9677, "lon": 24.1056, "desc": "Rīga, Skanstes iela" },
+      "involved_cars": [
+        { "registration_number": "JF-2022", "owner": "010191-20202", "damage_level": 2, "damage_description": "Rear left fender scratch", "at_fault_party": "161281-12999" },
+        { "registration_number": "TO-1010", "owner": "161281-12999", "damage_level": 3, "damage_description": "Front right bumper dent", "at_fault_party": "161281-12999" }
+      ],
+      "involved_persons": [
+        { "ssn": "010191-20202", "role": "driver", "injuries": "none" },
+        { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Saulains",
+      "description": "Unsafe lane change.",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-008",
+      "date": "2023-06-01T10:00:00",
+      "location": { "lat": 56.9475, "lon": 24.1170, "desc": "Rīga, Čaka iela" },
+      "involved_cars": [
+        { "registration_number": "RS-1999", "owner": "181178-10999", "damage_level": 9, "damage_description": "Total loss, rollover", "at_fault_party": "050175-12334" },
+        { "registration_number": "MN-5555", "owner": "050175-12334", "damage_level": 5, "damage_description": "Front end smashed", "at_fault_party": "050175-12334" }
+      ],
+      "involved_persons": [
+        { "ssn": "181178-10999", "role": "driver", "injuries": "severe" },
+        { "ssn": "050175-12334", "role": "driver", "injuries": "minor" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Red light violation resulting in T-bone collision. Repeat offender (Andris Ozoliņš).",
+      "severity_level": 9
+    },
+    {
+      "accident_id": "ACC-23-009",
+      "date": "2023-06-15T13:15:00",
+      "location": { "lat": 56.8010, "lon": 23.9500, "desc": "A8 šoseja" },
+      "involved_cars": [
+        { "registration_number": "EZ-4444", "owner": "251283-11447", "damage_level": 3, "damage_description": "Windshield cracked", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "251283-11447", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Saulains",
+      "description": "Stone chip from passing truck.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-010",
+      "date": "2023-06-20T08:45:00",
+      "location": { "lat": 55.8745, "lon": 26.5362, "desc": "Daugavpils, 18. novembra iela" },
+      "involved_cars": [
+        { "registration_number": "VV-3030", "owner": "301188-11998", "damage_level": 10, "damage_description": "Car burned out", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "301188-11998", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Karsts, 30C",
+      "description": "Electrical short circuit caused fire while driving.",
+      "severity_level": 8
+    },
+    {
+      "accident_id": "ACC-23-011",
+      "date": "2023-07-04T23:30:00",
+      "location": { "lat": 56.9496, "lon": 24.1052, "desc": "Rīga, Vanšu tilts" },
+      "involved_cars": [
+        { "registration_number": "BB-8888", "owner": "220993-11888", "damage_level": 9, "damage_description": "Multiple roll-overs", "at_fault_party": "220993-11888" },
+        { "registration_number": "MK-5678", "owner": "280298-10111", "damage_level": 6, "damage_description": "Rear and side damage", "at_fault_party": "220993-11888" }
+      ],
+      "involved_persons": [
+        { "ssn": "220993-11888", "role": "driver", "injuries": "severe" },
+        { "ssn": "280298-10111", "role": "driver", "injuries": "minor" },
+        { "ssn": "161281-12999", "role": "passenger", "injuries": "minor" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Excessive speeding on bridge. Repeat offender (Edgars Vilks).",
+      "severity_level": 9
+    },
+    {
+      "accident_id": "ACC-23-012",
+      "date": "2023-07-20T17:00:00",
+      "location": { "lat": 56.9100, "lon": 24.1500, "desc": "Rīga, Dienvidu tilts" },
+      "involved_cars": [
+        { "registration_number": "AB-1234", "owner": "120585-11223", "damage_level": 1, "damage_description": "Rear bumper scratch", "at_fault_party": "161281-12999" },
+        { "registration_number": "TO-1010", "owner": "161281-12999", "damage_level": 2, "damage_description": "Front bumper dent", "at_fault_party": "161281-12999" }
+      ],
+      "involved_persons": [
+        { "ssn": "120585-11223", "role": "driver", "injuries": "none" },
+        { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Distracted driving in heavy traffic. Rear end collision.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-013",
+      "date": "2023-08-05T12:30:00",
+      "location": { "lat": 57.1530, "lon": 24.8560, "desc": "Sigulda, Vidzemes šoseja" },
+      "involved_cars": [
+        { "registration_number": "JF-2022", "owner": "010191-20202", "damage_level": 4, "damage_description": "Side scratched by animal", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "010191-20202", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Collision with a deer (Meža zvērs).",
+      "severity_level": 3
+    },
+    {
+      "accident_id": "ACC-23-014",
+      "date": "2023-08-15T15:00:00",
+      "location": { "lat": 56.9500, "lon": 24.1000, "desc": "Rīga, Centrs" },
+      "involved_cars": [
+        { "registration_number": "GA-7777", "owner": "020280-12211", "damage_level": 8, "damage_description": "Front smashed", "at_fault_party": "020280-12211" },
+        { "registration_number": "LG-2345", "owner": "130365-13444", "damage_level": 8, "damage_description": "Side smashed, airbags deployed", "at_fault_party": "020280-12211" }
+      ],
+      "involved_persons": [
+        { "ssn": "020280-12211", "role": "driver", "injuries": "minor" },
+        { "ssn": "130365-13444", "role": "driver", "injuries": "severe" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Running a red light. Repeat offender (Kārlis Zariņš).",
+      "severity_level": 8
+    },
+    {
+      "accident_id": "ACC-23-015",
+      "date": "2023-09-01T07:50:00",
+      "location": { "lat": 56.9700, "lon": 24.1300, "desc": "Rīga, Brīvības gatve" },
+      "involved_cars": [
+        { "registration_number": "MK-5678", "owner": "280298-10111", "damage_level": 2, "damage_description": "Rear bumper scratch", "at_fault_party": "050175-12334" },
+        { "registration_number": "MN-5555", "owner": "050175-12334", "damage_level": 1, "damage_description": "Front bumper scratch", "at_fault_party": "050175-12334" }
+      ],
+      "involved_persons": [
+        { "ssn": "280298-10111", "role": "driver", "injuries": "none" },
+        { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Migla",
+      "description": "Fender bender in morning traffic. Repeat offender (Andris Ozoliņš).",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-016",
+      "date": "2023-09-10T20:00:00",
+      "location": { "lat": 57.3900, "lon": 21.5600, "desc": "Ventspils, Lielais prospekts" },
+      "involved_cars": [
+        { "registration_number": "HD-9900", "owner": "290589-10667", "damage_level": 0, "damage_description": "No visible damage", "at_fault_party": "290589-10667" }
+      ],
+      "involved_persons": [
+        { "ssn": "290589-10667", "role": "driver", "injuries": "none" },
+        { "ssn": "190695-10556", "role": "pedestrian", "injuries": "minor" }
+      ],
+      "weather_conditions": "Krēsla",
+      "description": "Pedestrian walked into the side of the car at slow speed.",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-017",
+      "date": "2023-09-25T14:00:00",
+      "location": { "lat": 56.9200, "lon": 23.5000, "desc": "Tukums" },
+      "involved_cars": [
+        { "registration_number": "MA-3322", "owner": "040896-20777", "damage_level": 5, "damage_description": "Suspension damage", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "040896-20777", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Hit a large pothole (bedre).",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-018",
+      "date": "2023-10-05T11:11:00",
+      "location": { "lat": 56.9500, "lon": 24.1100, "desc": "Rīga, Tērbatas iela" },
+      "involved_cars": [
+        { "registration_number": "RS-1999", "owner": "181178-10999", "damage_level": 3, "damage_description": "Door dented", "at_fault_party": "161281-12999" },
+        { "registration_number": "TO-1010", "owner": "161281-12999", "damage_level": 2, "damage_description": "Front corner dent", "at_fault_party": "161281-12999" }
+      ],
+      "involved_persons": [
+        { "ssn": "181178-10999", "role": "driver", "injuries": "none" },
+        { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Opening car door into traffic (dooring). Repeat offender (Raivis Dumpis involved in arguments).",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-019",
+      "date": "2023-10-15T18:30:00",
+      "location": { "lat": 56.8100, "lon": 24.6000, "desc": "Ogre" },
+      "involved_cars": [
+        { "registration_number": "BB-8888", "owner": "220993-11888", "damage_level": 10, "damage_description": "Total loss", "at_fault_party": "220993-11888" },
+        { "registration_number": "KL-9876", "owner": "230892-10445", "damage_level": 10, "damage_description": "Total loss", "at_fault_party": "220993-11888" }
+      ],
+      "involved_persons": [
+        { "ssn": "220993-11888", "role": "driver", "injuries": "severe" },
+        { "ssn": "230892-10445", "role": "driver", "injuries": "severe" },
+        { "ssn": "290589-10667", "role": "passenger", "injuries": "minor" }
+      ],
+      "weather_conditions": "Slapjš sniegs",
+      "description": "Head on collision, overtaking at blind spot. Repeat offender (Edgars Vilks).",
+      "severity_level": 10
+    },
+    {
+      "accident_id": "ACC-23-020",
+      "date": "2023-10-20T09:00:00",
+      "location": { "lat": 56.9800, "lon": 24.2000, "desc": "Rīga, Jugla" },
+      "involved_cars": [
+        { "registration_number": "OP-1122", "owner": "140200-21009", "damage_level": 2, "damage_description": "Side mirror broken", "at_fault_party": "140200-21009" }
+      ],
+      "involved_persons": [
+        { "ssn": "140200-21009", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Misjudged width of garage entry.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-021",
+      "date": "2023-11-01T08:00:00",
+      "location": { "lat": 56.9400, "lon": 24.1000, "desc": "Rīga, Pārdaugava" },
+      "involved_cars": [
+        { "registration_number": "AB-1234", "owner": "120585-11223", "damage_level": 4, "damage_description": "Left side scraped", "at_fault_party": "120585-11223" }
+      ],
+      "involved_persons": [
+        { "ssn": "120585-11223", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Migla",
+      "description": "Scraped against tram rails.",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-022",
+      "date": "2023-11-05T16:00:00",
+      "location": { "lat": 56.9100, "lon": 24.1200, "desc": "Rīga, Ziepniekkalns" },
+      "involved_cars": [
+        { "registration_number": "VV-3030", "owner": "301188-11998", "damage_level": 1, "damage_description": "Bumper scratch", "at_fault_party": "301188-11998" },
+        { "registration_number": "MA-3322", "owner": "040896-20777", "damage_level": 1, "damage_description": "Bumper scratch", "at_fault_party": "301188-11998" }
+      ],
+      "involved_persons": [
+        { "ssn": "301188-11998", "role": "driver", "injuries": "none" },
+        { "ssn": "040896-20777", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Parking lot incident.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-023",
+      "date": "2023-11-10T21:00:00",
+      "location": { "lat": 56.9500, "lon": 24.1500, "desc": "Rīga, Purvciems" },
+      "involved_cars": [
+        { "registration_number": "MN-5555", "owner": "050175-12334", "damage_level": 6, "damage_description": "Front right wheel detached", "at_fault_party": "050175-12334" }
+      ],
+      "involved_persons": [
+        { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Sniegs",
+      "description": "Hit traffic island. Repeat offender (Andris Ozoliņš).",
+      "severity_level": 4
+    },
+    {
+      "accident_id": "ACC-23-024",
+      "date": "2023-11-15T14:30:00",
+      "location": { "lat": 57.3000, "lon": 25.2500, "desc": "Cēsis" },
+      "involved_cars": [
+        { "registration_number": "JF-2022", "owner": "010191-20202", "damage_level": 5, "damage_description": "Rear glass broken", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "010191-20202", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Vējains",
+      "description": "Falling roof tile.",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-025",
+      "date": "2023-11-20T10:00:00",
+      "location": { "lat": 56.6000, "lon": 23.7000, "desc": "Jelgava" },
+      "involved_cars": [
+        { "registration_number": "KL-9876", "owner": "230892-10445", "damage_level": 3, "damage_description": "Hood dented", "at_fault_party": "020280-12211" },
+        { "registration_number": "GA-7777", "owner": "020280-12211", "damage_level": 3, "damage_description": "Trunk dented", "at_fault_party": "020280-12211" }
+      ],
+      "involved_persons": [
+        { "ssn": "230892-10445", "role": "driver", "injuries": "none" },
+        { "ssn": "020280-12211", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Skaidrs",
+      "description": "Reversing into another car. Repeat offender (Kārlis Zariņš).",
+      "severity_level": 2
+    },
+    {
+      "accident_id": "ACC-23-026",
+      "date": "2023-11-25T19:00:00",
+      "location": { "lat": 56.9400, "lon": 24.1000, "desc": "Rīga, Imanta" },
+      "involved_cars": [
+        { "registration_number": "EZ-4444", "owner": "251283-11447", "damage_level": 4, "damage_description": "Side mirror and door scratched", "at_fault_party": "161281-12999" },
+        { "registration_number": "TO-1010", "owner": "161281-12999", "damage_level": 4, "damage_description": "Side mirror and door scratched", "at_fault_party": "161281-12999" }
+      ],
+      "involved_persons": [
+        { "ssn": "251283-11447", "role": "driver", "injuries": "none" },
+        { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Lietus",
+      "description": "Sideswipe on narrow street.",
+      "severity_level": 3
+    },
+    {
+      "accident_id": "ACC-23-027",
+      "date": "2023-11-30T08:15:00",
+      "location": { "lat": 56.9500, "lon": 24.1200, "desc": "Rīga, Barona iela" },
+      "involved_cars": [
+        { "registration_number": "MK-5678", "owner": "280298-10111", "damage_level": 2, "damage_description": "Front bumper scrape", "at_fault_party": "280298-10111" }
+      ],
+      "involved_persons": [
+        { "ssn": "280298-10111", "role": "driver", "injuries": "none" }
+      ],
+      "weather_conditions": "Slapjš",
+      "description": "Hit a bollard.",
+      "severity_level": 1
+    },
+    {
+      "accident_id": "ACC-23-028",
+      "date": "2023-12-05T23:00:00",
+      "location": { "lat": 56.9900, "lon": 24.2500, "desc": "Rīga, Biķernieku iela" },
+      "involved_cars": [
+        { "registration_number": "BB-8888", "owner": "220993-11888", "damage_level": 8, "damage_description": "Engine block cracked", "at_fault_party": "220993-11888" }
+      ],
+      "involved_persons": [
+        { "ssn": "220993-11888", "role": "driver", "injuries": "minor" }
+      ],
+      "weather_conditions": "Sniegs",
+      "description": "Hit a tree after losing control. Repeat offender.",
+      "severity_level": 6
+    },
+    {
+      "accident_id": "ACC-23-029",
+      "date": "2023-12-10T12:00:00",
+      "location": { "lat": 56.9200, "lon": 24.0800, "desc": "Rīga, Āgenskalns" },
+      "involved_cars": [
+        { "registration_number": "LG-2345", "owner": "130365-13444", "damage_level": 5, "damage_description": "Rear ended by bus", "at_fault_party": null }
+      ],
+      "involved_persons": [
+        { "ssn": "130365-13444", "role": "driver", "injuries": "minor" }
+      ],
+      "weather_conditions": "Apmācies",
+      "description": "Public transport collision.",
+      "severity_level": 4
+    },
+    {
+      "accident_id": "ACC-23-030",
+      "date": "2023-12-15T15:00:00",
+      "location": { "lat": 56.5000, "lon": 27.3000, "desc": "Rēzekne" },
+      "involved_cars": [
+        { "registration_number": "AB-1234", "owner": "120585-11223", "damage_level": 9, "damage_description": "Head on collision", "at_fault_party": "020280-12211" },
+        { "registration_number": "GA-7777", "owner": "020280-12211", "damage_level": 9, "damage_description": "Head on collision", "at_fault_party": "020280-12211" }
+      ],
+      "involved_persons": [
+        { "ssn": "120585-11223", "role": "driver", "injuries": "severe" },
+        { "ssn": "020280-12211", "role": "driver", "injuries": "severe" }
+      ],
+      "weather_conditions": "Putnis",
+      "description": "Overtaking in blizzard conditions. Repeat offender.",
+      "severity_level": 9
+    }
+  ],
+  "claims": [
+    { "claim_id": "CLM-23-001", "date_filed": "2023-01-16", "claimant": "120585-11223", "policy_number": "POL-23-002", "accident_id": "ACC-23-001", "claim_amount": 1200.00, "status": "approved" },
+    { "claim_id": "CLM-23-002", "date_filed": "2023-02-11", "claimant": "230892-10445", "policy_number": "POL-23-003", "accident_id": "ACC-23-002", "claim_amount": 450.00, "status": "approved" },
+    { "claim_id": "CLM-23-003", "date_filed": "2023-03-06", "claimant": "050175-12334", "policy_number": "POL-23-004", "accident_id": "ACC-23-003", "claim_amount": 4500.00, "status": "pending" },
+    { "claim_id": "CLM-23-004", "date_filed": "2023-03-07", "claimant": "220993-11888", "policy_number": "POL-23-014", "accident_id": "ACC-23-003", "claim_amount": 6000.00, "status": "denied" },
+    { "claim_id": "CLM-23-005", "date_filed": "2023-03-23", "claimant": "140200-21009", "policy_number": "POL-23-006", "accident_id": "ACC-23-004", "claim_amount": 150.00, "status": "approved" },
+    { "claim_id": "CLM-23-006", "date_filed": "2023-04-16", "claimant": "220993-11888", "policy_number": "POL-23-014", "accident_id": "ACC-23-005", "claim_amount": 3200.00, "status": "denied" },
+    { "claim_id": "CLM-23-007", "date_filed": "2023-05-02", "claimant": "020280-12211", "policy_number": "POL-23-008", "accident_id": "ACC-23-006", "claim_amount": 800.00, "status": "approved" },
+    { "claim_id": "CLM-23-008", "date_filed": "2023-05-13", "claimant": "010191-20202", "policy_number": "POL-23-010", "accident_id": "ACC-23-007", "claim_amount": 350.00, "status": "approved" },
+    { "claim_id": "CLM-23-009", "date_filed": "2023-06-02", "claimant": "181178-10999", "policy_number": "POL-23-012", "accident_id": "ACC-23-008", "claim_amount": 8000.00, "status": "approved" },
+    { "claim_id": "CLM-23-010", "date_filed": "2023-06-16", "claimant": "251283-11447", "policy_number": "POL-23-009", "accident_id": "ACC-23-009", "claim_amount": 250.00, "status": "approved" },
+    { "claim_id": "CLM-23-011", "date_filed": "2023-06-21", "claimant": "301188-11998", "policy_number": "POL-23-007", "accident_id": "ACC-23-010", "claim_amount": 11000.00, "status": "pending" },
+    { "claim_id": "CLM-23-012", "date_filed": "2023-07-05", "claimant": "280298-10111", "policy_number": "POL-23-016", "accident_id": "ACC-23-011", "claim_amount": 4000.00, "status": "approved" },
+    { "claim_id": "CLM-23-013", "date_filed": "2023-07-21", "claimant": "120585-11223", "policy_number": "POL-23-002", "accident_id": "ACC-23-012", "claim_amount": 150.00, "status": "approved" },
+    { "claim_id": "CLM-23-014", "date_filed": "2023-08-06", "claimant": "010191-20202", "policy_number": "POL-23-010", "accident_id": "ACC-23-013", "claim_amount": 1100.00, "status": "approved" },
+    { "claim_id": "CLM-23-015", "date_filed": "2023-08-16", "claimant": "130365-13444", "policy_number": null, "accident_id": "ACC-23-014", "claim_amount": 9500.00, "status": "pending" },
+    { "claim_id": "CLM-23-016", "date_filed": "2023-09-02", "claimant": "280298-10111", "policy_number": "POL-23-016", "accident_id": "ACC-23-015", "claim_amount": 200.00, "status": "approved" },
+    { "claim_id": "CLM-23-017", "date_filed": "2023-09-26", "claimant": "040896-20777", "policy_number": null, "accident_id": "ACC-23-017", "claim_amount": 500.00, "status": "denied" },
+    { "claim_id": "CLM-23-018", "date_filed": "2023-10-06", "claimant": "181178-10999", "policy_number": "POL-23-012", "accident_id": "ACC-23-018", "claim_amount": 700.00, "status": "approved" },
+    { "claim_id": "CLM-23-019", "date_filed": "2023-10-16", "claimant": "230892-10445", "policy_number": "POL-23-003", "accident_id": "ACC-23-019", "claim_amount": 12000.00, "status": "pending" },
+    { "claim_id": "CLM-23-020", "date_filed": "2023-10-21", "claimant": "140200-21009", "policy_number": "POL-23-006", "accident_id": "ACC-23-020", "claim_amount": 120.00, "status": "approved" },
+    { "claim_id": "CLM-23-021", "date_filed": "2023-11-02", "claimant": "120585-11223", "policy_number": "POL-23-002", "accident_id": "ACC-23-021", "claim_amount": 600.00, "status": "approved" },
+    { "claim_id": "CLM-23-022", "date_filed": "2023-11-11", "claimant": "050175-12334", "policy_number": "POL-23-004", "accident_id": "ACC-23-023", "claim_amount": 2100.00, "status": "approved" },
+    { "claim_id": "CLM-23-023", "date_filed": "2023-11-16", "claimant": "010191-20202", "policy_number": "POL-23-010", "accident_id": "ACC-23-024", "claim_amount": 300.00, "status": "approved" },
+    { "claim_id": "CLM-23-024", "date_filed": "2023-11-26", "claimant": "230892-10445", "policy_number": "POL-23-003", "accident_id": "ACC-23-025", "claim_amount": 400.00, "status": "approved" },
+    { "claim_id": "CLM-23-025", "date_filed": "2023-12-06", "claimant": "220993-11888", "policy_number": "POL-23-014", "accident_id": "ACC-23-028", "claim_amount": 5500.00, "status": "denied" },
+    { "claim_id": "CLM-23-026", "date_filed": "2023-12-16", "claimant": "120585-11223", "policy_number": "POL-23-001", "accident_id": "ACC-23-030", "claim_amount": 14000.00, "status": "pending" }
+  ]
+}

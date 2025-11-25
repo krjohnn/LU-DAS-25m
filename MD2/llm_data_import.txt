@@ -1,0 +1,62 @@
+Generate the following JSON dataset.
+
+Ensure that the dataset is localised to the Latvia (consider social security number, names, places, etc.)
+I want following dataset:
+
+Insurance companies (5 to 10 entries)
+Persons (20 entries)
+- social_security_number
+- full_name
+- date_of_birth
+- address
+- phone_number
+- risk_level (0-10 scale)
+
+Policies (10-20 entries)
+- policy_id
+- policy_type (basic, standard, premium)
+- type_of_insurance (OCTA, KASKO)
+- start_date
+- end_date
+- insured_person (social security number reference)
+- deductible_amount
+- coverage_amount
+
+Cars (15 entries)
+- registration_number
+- make
+- model
+- year
+- owner (social security number reference)
+- vin
+- technical_inspection_date
+- technical_inspection_end_date (will be always after technical_inspection_date by 1-2 year)
+- policy_number reference (can be multiple policies per car KASKO and OCTA or only one or the other)
+
+Accidents (30-50 entries)
+- accident_id
+- date
+- location (spatial coordinates)
+- involved_cars (list of registration numbers, social security number references, damage_level (0-10 scale), damage_description, at_fault_party (social security number reference))
+- involed_persons (list of social security number references, role (driver, passenger, pedestrian), injuries (none, minor, severe, fatal))
+- weather_conditions
+- description
+- severity_level (0-10 scale)
+Note: ensure that some accidents involve multiple cars and persons. And there are repeat offenders.
+
+Claims (20-40 entries)
+- claim_id
+- date_filed
+- claimant (social security number reference)
+- policy_number reference
+- accident_id reference
+- claim_amount
+- status (pending, approved, denied)
+
+
+
+
+Output entire dataset in chunks. Preferably in a file if you can. Do not pause.
+
+---------------------------------------------
+https://gemini.google.com/share/010172fb24a9
