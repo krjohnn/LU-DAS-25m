@@ -156,21 +156,29 @@ def main():
         import_director_data(r, json_data)
         import_actor_data(r, json_data)
 
-        # Edit 50 entires - To D
+        # Edit 50 entires - To Dd
+        input("Press Enter to update 50 movie entries...")
         json_data = load_json(filename="in_update_data.json")
         update_movie_data(r, json_data)
 
         # Select 50 entries - To Do
+        input("Press Enter to select movie data by name...")
         select_movie_data_by_name(r, movie_name=["Pulp Fiction", "Inception", "Interstellar", "The Dark Knight", "Forrest Gump", "The Matrix", "The Shawshank Redemption", "The Godfather", "The Lord of the Rings: The Return of the King", "Fight Club"])
+        input("Press Enter to select top n movies by revenue...")
         select_top_n_movies_by_revenue(r, "top",10)
+        input("Press Enter to select bottom n movies by revenue...")
         select_top_n_movies_by_revenue(r, "bottom", 10)
+        input("Press Enter to select movie titles by genre...")
         select_movies_by_genre(r, "Sci-Fi")
+        input("Press Enter to find actors data by award name...")
         find_actors_with_award(r, "Emmy")
 
         # Delete 50 entries - To Do
+        input("Press Enter to delete movie and related entries...")
         json_data = load_json(filename="in_delete_data.json")
         delete_movie_data(r, json_data)
 
+        input("Press Enter to select movie titles by genre after Deletion...")
         select_movies_by_genre(r, "Sci-Fi")
 
     else:
