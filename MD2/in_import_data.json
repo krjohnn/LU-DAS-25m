@@ -213,7 +213,7 @@
         { "ssn": "050175-12334", "role": "driver", "injuries": "minor" }
       ],
       "weather_conditions": "Clear",
-      "description": "Red light violation resulting in T-bone collision. Repeat offender (Andris Ozoliņš).",
+      "description": "Red light violation resulting in T-bone collision.",
       "severity_level": 9
     },
     {
@@ -258,7 +258,7 @@
         { "ssn": "161281-12999", "role": "passenger", "injuries": "minor" }
       ],
       "weather_conditions": "Rain",
-      "description": "Excessive speeding on bridge. Repeat offender (Edgars Vilks).",
+      "description": "Excessive speeding on bridge.",
       "severity_level": 9
     },
     {
@@ -288,7 +288,7 @@
         { "ssn": "010191-20202", "role": "driver", "injuries": "none" }
       ],
       "weather_conditions": "Clear",
-      "description": "Collision with a deer (Meža zvērs).",
+      "description": "Collision with a deer.",
       "severity_level": 3
     },
     {
@@ -304,7 +304,7 @@
         { "ssn": "130365-13444", "role": "driver", "injuries": "severe" }
       ],
       "weather_conditions": "Rain",
-      "description": "Running a red light. Repeat offender (Kārlis Zariņš).",
+      "description": "Running a red light.",
       "severity_level": 8
     },
     {
@@ -320,7 +320,7 @@
         { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
       ],
       "weather_conditions": "Fog",
-      "description": "Fender bender in morning traffic. Repeat offender (Andris Ozoliņš).",
+      "description": "Fender bender in morning traffic.",
       "severity_level": 1
     },
     {
@@ -365,7 +365,7 @@
         { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
       ],
       "weather_conditions": "Rain",
-      "description": "Opening car door into traffic (dooring). Repeat offender (Raivis Dumpis involved in arguments).",
+      "description": "Opening car door into traffic (dooring).",
       "severity_level": 2
     },
     {
@@ -382,7 +382,7 @@
         { "ssn": "290589-10667", "role": "passenger", "injuries": "minor" }
       ],
       "weather_conditions": "Wet snow",
-      "description": "Head on collision, overtaking at blind spot. Repeat offender (Edgars Vilks).",
+      "description": "Head on collision, overtaking at blind spot.",
       "severity_level": 10
     },
     {
@@ -440,7 +440,7 @@
         { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
       ],
       "weather_conditions": "Snow",
-      "description": "Hit traffic island. Repeat offender (Andris Ozoliņš).",
+      "description": "Hit traffic island.",
       "severity_level": 4
     },
     {
@@ -470,7 +470,7 @@
         { "ssn": "020280-12211", "role": "driver", "injuries": "none" }
       ],
       "weather_conditions": "Clear",
-      "description": "Reversing into another car. Repeat offender (Kārlis Zariņš).",
+      "description": "Reversing into another car.",
       "severity_level": 2
     },
     {
@@ -514,7 +514,7 @@
         { "ssn": "220993-11888", "role": "driver", "injuries": "minor" }
       ],
       "weather_conditions": "Snow",
-      "description": "Hit a tree after losing control. Repeat offender.",
+      "description": "Hit a tree after losing control.",
       "severity_level": 6
     },
     {
@@ -544,7 +544,7 @@
         { "ssn": "020280-12211", "role": "driver", "injuries": "severe" }
       ],
       "weather_conditions": "Snow storm",
-      "description": "Overtaking in blizzard conditions. Repeat offender.",
+      "description": "Overtaking in blizzard conditions.",
       "severity_level": 9
     }
   ],
