@@ -96,8 +96,31 @@ def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
                 a.severity = acc.severity_level,
                 a.location = point({latitude: acc.location.lat, longitude: acc.location.lon}),
                 a.location_desc = acc.location.description
+                
+            // Link Involved Cars and their damage details
+            WITH a, acc
+            UNWIND acc.involved_cars AS car_data
+            MATCH (c:Car {registration_number: car_data.registration_number})
+            MERGE (c)-[r:INVOLVED_IN]->(a)
+            SET r.damage_level = car_data.damage_level,
+                r.damage_desc = car_data.damage_description
+
+            // Check for "At Fault" party and create relationship
+            WITH a, acc, car_data
+            WHERE car_data.at_fault_party IS NOT NULL
+            MATCH (p_fault:Person {social_security_number: car_data.at_fault_party})
+            MERGE (p_fault)-[:CAUSED]->(a)
+
+            // Link Involved People and their roles and injuries
+            WITH a, acc
+            UNWIND acc.involved_persons AS person_data
+            MATCH (p:Person {social_security_number: person_data.ssn})
+            MERGE (p)-[r:INVOLVED_IN]->(a)
+            SET r.role = person_data.role,
+                r.injuries = person_data.injuries
             """, accidents=json_data.get("accidents", []), database_="neo4j")
     print(f"Imported {len(json_data.get("accidents", []))} accidents into DB.")
+
 
 
 def main():
@@ -109,7 +132,7 @@ def main():
     # persons -- DONE
     # policies -- DONE (relationships - TO DO)
     # cars -- DONE
-    # accidents -- TO DO
+    # accidents -- DONE
     # claims -- TO DO
 
     json_data = load_json(filename="in_import_data.json")
