@@ -66,6 +66,24 @@ def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
                         phone_number=person.get("phone_number"), risk_level=person.get("risk_level"), database_="neo4j")
     print(f"Imported {len(json_data.get("persons", []))} persons into Neo4j.")
 
+def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
+    for policy in json_data.get("policies", []):
+        n.execute_query("""
+        CREATE (p:Policy {policy_id: $policy_id, policy_type: $policy_type, type_of_insurance: $type_of_insurance, start_date: $start_date, end_date: $end_date, insured_person: $insured_person, deductible_amount: $deductible_amount, coverage_amount: $coverage_amount})
+        """, policy_id=policy.get("policy_id"), policy_type=policy.get("policy_type"), type_of_insurance=policy.get("type_of_insurance"),
+                        start_date=policy.get("start_date"), end_date=policy.get("end_date"), insured_person=policy.get("insured_person"),
+                        deductible_amount=policy.get("deductible_amount"), coverage_amount=policy.get("coverage_amount"), database_="neo4j")
+    print(f"Imported {len(json_data.get("policies", []))} policies into Neo4j.")
+
+def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
+    for car in json_data.get("cars", []):
+        n.execute_query("""
+        CREATE (c:Car {registration_number: $registration_number, make: $make, model: $model, year: $year, owner: $owner, vin: $vin, technical_inspection_date: $technical_inspection_date, technical_inspection_end_date: $technical_inspection_end_date, policy_number: $policy_number})
+        """, registration_number=car.get("registration_number"), make=car.get("make"), model=car.get("model"),
+                        year=car.get("year"), owner=car.get("owner"), vin=car.get("vin"), technical_inspection_date=car.get("technical_inspection_date"),
+                        technical_inspection_end_date=car.get("technical_inspection_end_date"), policy_number=car.get("policy_number"), database_="neo4j")
+    print(f"Imported {len(json_data.get("cars", []))} cars into Neo4j.")
+
 def main():
     n = connect_to_neo4j()
     if not n:
@@ -73,19 +91,23 @@ def main():
 
     # insurance_companies -- DONE
     # persons -- DONE
-    # policies
-    # cars
-    # accidents
-    # claims
+    # policies -- DONE (relationships - TO DO)
+    # cars -- DONE
+    # accidents -- TO DO
+    # claims -- TO DO
 
     json_data = load_json(filename="in_import_data.json")
 
-    for i in json_data.get("persons", []):
+    for i in json_data.get("accidents", []):
         print(i)
 
-    import_person_data(n, json_data)
 
-    #import_insurance_company_data(n, json_data)
+    return
+    import_insurance_company_data(n, json_data)
+    import_person_data(n, json_data)
+    import_policy_data(n, json_data)
+    import_car_data(n, json_data)
+
 
     #delete_all_nodes(n)
     n.close()
