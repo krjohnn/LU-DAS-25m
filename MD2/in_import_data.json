@@ -106,7 +106,7 @@
         { "ssn": "120585-11223", "role": "driver", "injuries": "none" },
         { "ssn": "020280-12211", "role": "driver", "injuries": "minor" }
       ],
-      "weather_conditions": "Sniegs, slideni ceļi",
+      "weather_conditions": "Snow, ice",
       "description": "Rear-end collision due to insufficient braking distance on icy road.",
       "severity_level": 3
     },
@@ -121,7 +121,7 @@
         { "ssn": "230892-10445", "role": "driver", "injuries": "none" },
         { "ssn": "190695-10556", "role": "pedestrian", "injuries": "minor" }
       ],
-      "weather_conditions": "Tumšs, viegls lietus",
+      "weather_conditions": "Light rain",
       "description": "Car clipped a pedestrian crossing the street unexpectedly.",
       "severity_level": 4
     },
@@ -138,7 +138,7 @@
         { "ssn": "220993-11888", "role": "driver", "injuries": "minor" },
         { "ssn": "290589-10667", "role": "passenger", "injuries": "severe" }
       ],
-      "weather_conditions": "Saulains",
+      "weather_conditions": "Clear",
       "description": "Failure to yield at roundabout.",
       "severity_level": 6
     },
@@ -152,7 +152,7 @@
       "involved_persons": [
         { "ssn": "140200-21009", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Apmācies",
+      "weather_conditions": "Clouds",
       "description": "Hit a parking post while reversing.",
       "severity_level": 1
     },
@@ -166,7 +166,7 @@
       "involved_persons": [
         { "ssn": "220993-11888", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Drifting attempt gone wrong, hit curb. Repeat offender.",
       "severity_level": 5
     },
@@ -180,7 +180,7 @@
       "involved_persons": [
         { "ssn": "020280-12211", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Vējains, krusa",
+      "weather_conditions": "Wind, hail",
       "description": "Tree branch fell on the car.",
       "severity_level": 2
     },
@@ -196,7 +196,7 @@
         { "ssn": "010191-20202", "role": "driver", "injuries": "none" },
         { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Saulains",
+      "weather_conditions": "Sun",
       "description": "Unsafe lane change.",
       "severity_level": 2
     },
@@ -212,7 +212,7 @@
         { "ssn": "181178-10999", "role": "driver", "injuries": "severe" },
         { "ssn": "050175-12334", "role": "driver", "injuries": "minor" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Red light violation resulting in T-bone collision. Repeat offender (Andris Ozoliņš).",
       "severity_level": 9
     },
@@ -226,7 +226,7 @@
       "involved_persons": [
         { "ssn": "251283-11447", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Saulains",
+      "weather_conditions": "Sun",
       "description": "Stone chip from passing truck.",
       "severity_level": 1
     },
@@ -240,7 +240,7 @@
       "involved_persons": [
         { "ssn": "301188-11998", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Karsts, 30C",
+      "weather_conditions": "Sun, hot 30C",
       "description": "Electrical short circuit caused fire while driving.",
       "severity_level": 8
     },
@@ -257,7 +257,7 @@
         { "ssn": "280298-10111", "role": "driver", "injuries": "minor" },
         { "ssn": "161281-12999", "role": "passenger", "injuries": "minor" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Excessive speeding on bridge. Repeat offender (Edgars Vilks).",
       "severity_level": 9
     },
@@ -273,7 +273,7 @@
         { "ssn": "120585-11223", "role": "driver", "injuries": "none" },
         { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Distracted driving in heavy traffic. Rear end collision.",
       "severity_level": 1
     },
@@ -287,7 +287,7 @@
       "involved_persons": [
         { "ssn": "010191-20202", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Collision with a deer (Meža zvērs).",
       "severity_level": 3
     },
@@ -303,7 +303,7 @@
         { "ssn": "020280-12211", "role": "driver", "injuries": "minor" },
         { "ssn": "130365-13444", "role": "driver", "injuries": "severe" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Running a red light. Repeat offender (Kārlis Zariņš).",
       "severity_level": 8
     },
@@ -319,7 +319,7 @@
         { "ssn": "280298-10111", "role": "driver", "injuries": "none" },
         { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Migla",
+      "weather_conditions": "Fog",
       "description": "Fender bender in morning traffic. Repeat offender (Andris Ozoliņš).",
       "severity_level": 1
     },
@@ -334,7 +334,7 @@
         { "ssn": "290589-10667", "role": "driver", "injuries": "none" },
         { "ssn": "190695-10556", "role": "pedestrian", "injuries": "minor" }
       ],
-      "weather_conditions": "Krēsla",
+      "weather_conditions": "Dusk",
       "description": "Pedestrian walked into the side of the car at slow speed.",
       "severity_level": 2
     },
@@ -348,7 +348,7 @@
       "involved_persons": [
         { "ssn": "040896-20777", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Hit a large pothole (bedre).",
       "severity_level": 2
     },
@@ -364,7 +364,7 @@
         { "ssn": "181178-10999", "role": "driver", "injuries": "none" },
         { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Opening car door into traffic (dooring). Repeat offender (Raivis Dumpis involved in arguments).",
       "severity_level": 2
     },
@@ -381,7 +381,7 @@
         { "ssn": "230892-10445", "role": "driver", "injuries": "severe" },
         { "ssn": "290589-10667", "role": "passenger", "injuries": "minor" }
       ],
-      "weather_conditions": "Slapjš sniegs",
+      "weather_conditions": "Wet snow",
       "description": "Head on collision, overtaking at blind spot. Repeat offender (Edgars Vilks).",
       "severity_level": 10
     },
@@ -395,7 +395,7 @@
       "involved_persons": [
         { "ssn": "140200-21009", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Misjudged width of garage entry.",
       "severity_level": 1
     },
@@ -409,7 +409,7 @@
       "involved_persons": [
         { "ssn": "120585-11223", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Migla",
+      "weather_conditions": "Fog",
       "description": "Scraped against tram rails.",
       "severity_level": 2
     },
@@ -425,7 +425,7 @@
         { "ssn": "301188-11998", "role": "driver", "injuries": "none" },
         { "ssn": "040896-20777", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Parking lot incident.",
       "severity_level": 1
     },
@@ -439,7 +439,7 @@
       "involved_persons": [
         { "ssn": "050175-12334", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Sniegs",
+      "weather_conditions": "Snow",
       "description": "Hit traffic island. Repeat offender (Andris Ozoliņš).",
       "severity_level": 4
     },
@@ -453,7 +453,7 @@
       "involved_persons": [
         { "ssn": "010191-20202", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Vējains",
+      "weather_conditions": "Wind",
       "description": "Falling roof tile.",
       "severity_level": 2
     },
@@ -469,7 +469,7 @@
         { "ssn": "230892-10445", "role": "driver", "injuries": "none" },
         { "ssn": "020280-12211", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Skaidrs",
+      "weather_conditions": "Clear",
       "description": "Reversing into another car. Repeat offender (Kārlis Zariņš).",
       "severity_level": 2
     },
@@ -485,7 +485,7 @@
         { "ssn": "251283-11447", "role": "driver", "injuries": "none" },
         { "ssn": "161281-12999", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Lietus",
+      "weather_conditions": "Rain",
       "description": "Sideswipe on narrow street.",
       "severity_level": 3
     },
@@ -499,7 +499,7 @@
       "involved_persons": [
         { "ssn": "280298-10111", "role": "driver", "injuries": "none" }
       ],
-      "weather_conditions": "Slapjš",
+      "weather_conditions": "Wet roads",
       "description": "Hit a bollard.",
       "severity_level": 1
     },
@@ -513,7 +513,7 @@
       "involved_persons": [
         { "ssn": "220993-11888", "role": "driver", "injuries": "minor" }
       ],
-      "weather_conditions": "Sniegs",
+      "weather_conditions": "Snow",
       "description": "Hit a tree after losing control. Repeat offender.",
       "severity_level": 6
     },
@@ -527,7 +527,7 @@
       "involved_persons": [
         { "ssn": "130365-13444", "role": "driver", "injuries": "minor" }
       ],
-      "weather_conditions": "Apmācies",
+      "weather_conditions": "Overcast",
       "description": "Public transport collision.",
       "severity_level": 4
     },
@@ -543,7 +543,7 @@
         { "ssn": "120585-11223", "role": "driver", "injuries": "severe" },
         { "ssn": "020280-12211", "role": "driver", "injuries": "severe" }
       ],
-      "weather_conditions": "Putnis",
+      "weather_conditions": "Snow storm",
       "description": "Overtaking in blizzard conditions. Repeat offender.",
       "severity_level": 9
     }
