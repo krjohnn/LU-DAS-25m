@@ -49,11 +49,13 @@ def delete_all_nodes(n):
         raise
 
 def import_insurance_company_data(n, json_data: List[Dict[str, Any]]) -> None:
-    for insurance_company in json_data.get("insurance_companies", []):
-        n.execute_query("""
-        MERGE (c:InsuranceCompany {id: $id, name: $name, address: $address, contact_email: $contact_email})
-        """, id=insurance_company.get("id"), name=insurance_company.get("name"), address=insurance_company.get("address"),
-                        contact_email=insurance_company.get("contact_email"), database_="neo4j")
+    n.execute_query("""
+    UNWIND $insurance_companies AS ic
+    MERGE (c:InsuranceCompany {id: ic.id})
+    SET c.name = ic.name,
+        c.address = ic.address,
+        c.contact_email = ic.contact_email
+    """, insurance_companies=json_data.get("insurance_companies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("insurance_companies", []))} insurance companies into DB.")
 
 def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
@@ -78,11 +80,17 @@ def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
         pol.end_date = policy.end_date, 
         pol.insured_person = policy.insured_person, 
         pol.deductible_amount = policy.deductible_amount, 
-        pol.coverage_amount = policy.coverage_amount
+        pol.coverage_amount = policy.coverage_amount,
+        pol.insurance_company_id = policy.insurance_company_id,
+        pol.name = policy.policy_id
     
     WITH pol
     MATCH (p:Person {social_security_number: pol.insured_person})
     MERGE (pol)-[:INSURES]->(p)
+    
+    WITH pol
+    MATCH (c:InsuranceCompany {id: pol.insurance_company_id})
+    MERGE (c)-[:ISSUER]->(pol)
     """, policies=json_data.get("policies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("policies", []))} policies into DB.")
 
@@ -177,25 +185,7 @@ def main():
     if not n:
         return
 
-    # insurance_companies -- DONE
-    # persons -- DONE
-    # policies -- DONE (relationships - TO DO)
-    # cars -- DONE
-    # accidents -- DONE
-    # claims -- DONE
-
     json_data = load_json(filename="in_import_data.json")
-
-    # for i in json_data.get("claims", []):
-    #     print("\nClaim:")
-    #     for k, v in i.items():
-    #         if isinstance(v, list):
-    #             for item in v:
-    #                 print(k)
-    #                 print(f"    - {item}")
-    #         else:
-    #             print(f"  {k}: {v}")
-
 
     import_insurance_company_data(n, json_data)
     import_person_data(n, json_data)
@@ -206,7 +196,6 @@ def main():
 
     #delete_all_nodes(n)
     n.close()
-
     return
 
 if __name__ == "__main__":
