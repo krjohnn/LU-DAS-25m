@@ -66,22 +66,34 @@ def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
     print(f"Imported {len(json_data.get("persons", []))} persons into DB.")
 
 def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
-    for policy in json_data.get("policies", []):
-        n.execute_query("""
-        MERGE (pol:Policy {policy_id: $policy_id, policy_type: $policy_type, type_of_insurance: $type_of_insurance, start_date: $start_date, end_date: $end_date, insured_person: $insured_person, deductible_amount: $deductible_amount, coverage_amount: $coverage_amount})
-        
-        WITH pol
-        MATCH (p:Person {social_security_number: pol.insured_person})
-        MERGE (pol)-[:INSURES]->(p)
-        """, policy_id=policy.get("policy_id"), policy_type=policy.get("policy_type"), type_of_insurance=policy.get("type_of_insurance"),
-                        start_date=policy.get("start_date"), end_date=policy.get("end_date"), insured_person=policy.get("insured_person"),
-                        deductible_amount=policy.get("deductible_amount"), coverage_amount=policy.get("coverage_amount"), database_="neo4j")
+    n.execute_query("""
+    UNWIND $policies AS policy
+    MERGE (pol:Policy {policy_id: policy.policy_id})
+    SET pol.policy_type = policy.policy_type, 
+        pol.type_of_insurance = policy.type_of_insurance, 
+        pol.start_date = policy.start_date, 
+        pol.end_date = policy.end_date, 
+        pol.insured_person = policy.insured_person, 
+        pol.deductible_amount = policy.deductible_amount, 
+        pol.coverage_amount = policy.coverage_amount
+    
+    WITH pol
+    MATCH (p:Person {social_security_number: pol.insured_person})
+    MERGE (pol)-[:INSURES]->(p)
+    """, policies=json_data.get("policies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("policies", []))} policies into DB.")
 
 def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
-    for car in json_data.get("cars", []):
-        n.execute_query("""
-        MERGE (c:Car {registration_number: $registration_number, make: $make, model: $model, year: $year, owner: $owner, vin: $vin, technical_inspection_date: $technical_inspection_date, technical_inspection_end_date: $technical_inspection_end_date, policy_number: $policy_number})
+    n.execute_query("""
+        UNWIND $cars AS car
+        MERGE (c:Car {registration_number: car.registration_number, vin: car.vin})
+        SET c.make = car.make,
+            c.model = car.model,
+            c.year = car.year,
+            c.owner = car.owner,
+            c.technical_inspection_date = car.technical_inspection_date,
+            c.technical_inspection_end_date = car.technical_inspection_end_date,
+            c.policy_number = car.policy_number
         
         WITH c        
         MATCH (p:Person {social_security_number: c.owner})
@@ -93,9 +105,7 @@ def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
         UNWIND c.policy_number AS policy_number
         MATCH (p:Policy {policy_id: policy_number})
         MERGE (p)-[:COVERS]->(c)
-        """, registration_number=car.get("registration_number"), make=car.get("make"), model=car.get("model"),
-                        year=car.get("year"), owner=car.get("owner"), vin=car.get("vin"), technical_inspection_date=car.get("technical_inspection_date"),
-                        technical_inspection_end_date=car.get("technical_inspection_end_date"), policy_number=car.get("policy_number"), database_="neo4j")
+        """, cars=json_data.get("cars", []), database_="neo4j")
     print(f"Imported {len(json_data.get("cars", []))} cars into DB.")
 
 def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
