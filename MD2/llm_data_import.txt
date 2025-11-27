@@ -60,3 +60,6 @@ Output entire dataset in chunks. Preferably in a file if you can. Do not pause.
 
 ---------------------------------------------
 https://gemini.google.com/share/010172fb24a9
+
+-- Translated LV to EN afterwards
+-- Added insurance_company_id
