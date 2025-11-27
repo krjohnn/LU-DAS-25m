@@ -57,12 +57,15 @@ def import_insurance_company_data(n, json_data: List[Dict[str, Any]]) -> None:
     print(f"Imported {len(json_data.get("insurance_companies", []))} insurance companies into DB.")
 
 def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
-    for person in json_data.get("persons", []):
-        n.execute_query("""
-        MERGE (p:Person {social_security_number: $social_security_number, full_name: $full_name, date_of_birth: $date_of_birth, address: $address, phone_number: $phone_number, risk_level: $risk_level})
-        """, social_security_number=person.get("social_security_number"), full_name=person.get("full_name"),
-                        date_of_birth=person.get("date_of_birth"), address=person.get("address"),
-                        phone_number=person.get("phone_number"), risk_level=person.get("risk_level"), database_="neo4j")
+    n.execute_query("""
+    UNWIND $persons AS person
+    MERGE (p:Person {social_security_number: person.social_security_number})
+    SET p.full_name = person.full_name,
+        p.date_of_birth = person.date_of_birth,
+        p.address = person.address,
+        p.phone_number = person.phone_number,
+        p.risk_level = person.risk_level
+    """, persons=json_data.get("persons", []), database_="neo4j")
     print(f"Imported {len(json_data.get("persons", []))} persons into DB.")
 
 def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
