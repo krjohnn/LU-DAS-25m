@@ -116,7 +116,7 @@ def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
         UNWIND c.policy_number AS policy_number
         MATCH (p:Policy {policy_id: policy_number})
         MERGE (p)-[:COVERS]->(c)
-        """, cars=json_data.get("cars", []), database_="neo4j")
+    """, cars=json_data.get("cars", []), database_="neo4j")
     print(f"Imported {len(json_data.get("cars", []))} cars into DB.")
 
 def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
@@ -142,7 +142,7 @@ def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
             r.damage_desc = car_data.damage_description
 
         // Link Involved People and their roles and injuries
-        WITH a, acc, car_data
+        WITH a, acc
         UNWIND acc.involved_persons AS person_data
         MATCH (p:Person {social_security_number: person_data.ssn})
         MERGE (p)-[r:INVOLVED_IN]->(a)
@@ -150,12 +150,13 @@ def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
             r.injuries = person_data.injuries
 
         // Check for "At Fault" party and create relationship
-        WITH a, acc, car_data
-        WHERE car_data.at_fault_party IS NOT NULL
-        MATCH (p_fault:Person {social_security_number: car_data.at_fault_party})
+        WITH a, acc
+        UNWIND acc.involved_cars AS car_data_fault
+        WITH a, car_data_fault
+        WHERE car_data_fault.at_fault_party IS NOT NULL
+        MATCH (p_fault:Person {social_security_number: car_data_fault.at_fault_party})
         MERGE (p_fault)-[:CAUSED]->(a)
-
-            """, accidents=json_data.get("accidents", []), database_="neo4j")
+    """, accidents=json_data.get("accidents", []), database_="neo4j")
     print(f"Imported {len(json_data.get("accidents", []))} accidents into DB.")
 
 def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
