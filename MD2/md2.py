@@ -50,47 +50,47 @@ def delete_all_nodes(n):
 
 def import_insurance_company_data(n, json_data: List[Dict[str, Any]]) -> None:
     n.execute_query("""
-    UNWIND $insurance_companies AS ic
-    MERGE (c:InsuranceCompany {id: ic.id})
-    SET c.name = ic.name,
-        c.address = ic.address,
-        c.contact_email = ic.contact_email
+        UNWIND $insurance_companies AS ic
+        MERGE (c:InsuranceCompany {id: ic.id})
+        SET c.name = ic.name,
+            c.address = ic.address,
+            c.contact_email = ic.contact_email
     """, insurance_companies=json_data.get("insurance_companies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("insurance_companies", []))} insurance companies into DB.")
 
 def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
     n.execute_query("""
-    UNWIND $persons AS person
-    MERGE (p:Person {social_security_number: person.social_security_number})
-    SET p.full_name = person.full_name,
-        p.date_of_birth = date(person.date_of_birth),
-        p.address = person.address,
-        p.phone_number = person.phone_number,
-        p.risk_level = person.risk_level
+        UNWIND $persons AS person
+        MERGE (p:Person {social_security_number: person.social_security_number})
+        SET p.full_name = person.full_name,
+            p.date_of_birth = date(person.date_of_birth),
+            p.address = person.address,
+            p.phone_number = person.phone_number,
+            p.risk_level = person.risk_level
     """, persons=json_data.get("persons", []), database_="neo4j")
     print(f"Imported {len(json_data.get("persons", []))} persons into DB.")
 
 def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
     n.execute_query("""
-    UNWIND $policies AS policy
-    MERGE (pol:Policy {policy_id: policy.policy_id})
-    SET pol.policy_type = policy.policy_type, 
-        pol.type_of_insurance = policy.type_of_insurance, 
-        pol.start_date = date(policy.start_date), 
-        pol.end_date = date(policy.end_date), 
-        pol.insured_person = policy.insured_person, 
-        pol.deductible_amount = policy.deductible_amount, 
-        pol.coverage_amount = policy.coverage_amount,
-        pol.insurance_company_id = policy.insurance_company_id,
-        pol.name = policy.policy_id
-    
-    WITH pol
-    MATCH (p:Person {social_security_number: pol.insured_person})
-    MERGE (pol)-[:COVERS]->(p)
-    
-    WITH pol
-    MATCH (c:InsuranceCompany {id: pol.insurance_company_id})
-    MERGE (c)-[:ISSUED]->(pol)
+        UNWIND $policies AS policy
+        MERGE (pol:Policy {policy_id: policy.policy_id})
+        SET pol.policy_type = policy.policy_type, 
+            pol.type_of_insurance = policy.type_of_insurance, 
+            pol.start_date = date(policy.start_date), 
+            pol.end_date = date(policy.end_date), 
+            pol.insured_person = policy.insured_person, 
+            pol.deductible_amount = policy.deductible_amount, 
+            pol.coverage_amount = policy.coverage_amount,
+            pol.insurance_company_id = policy.insurance_company_id,
+            pol.name = policy.policy_id
+        
+        WITH pol
+        MATCH (p:Person {social_security_number: pol.insured_person})
+        MERGE (pol)-[:COVERS]->(p)
+        
+        WITH pol
+        MATCH (c:InsuranceCompany {id: pol.insurance_company_id})
+        MERGE (c)-[:ISSUED]->(pol)
     """, policies=json_data.get("policies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("policies", []))} policies into DB.")
 
@@ -121,66 +121,66 @@ def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
 
 def import_accident_data(n, json_data: List[Dict[str, Any]]) -> None:
     n.execute_query("""
-            UNWIND $accidents AS acc
+        UNWIND $accidents AS acc
 
-            // Create the Accident Node
-            MERGE (a:Accident {accident_id: acc.accident_id})
-            SET a.date = datetime(acc.date),
-                a.weather = acc.weather_conditions,
-                a.description = acc.description,
-                a.severity = acc.severity_level,
-                a.location = point({latitude: acc.location.lat, longitude: acc.location.lon}),
-                a.location_desc = acc.location.desc,
-                a.name = acc.accident_id
-                
-            // Link Involved Cars and their damage details
-            WITH a, acc
-            UNWIND acc.involved_cars AS car_data
-            MATCH (c:Car {registration_number: car_data.registration_number})
-            MERGE (c)-[r:INVOLVED_IN]->(a)
-            SET r.damage_level = car_data.damage_level,
-                r.damage_desc = car_data.damage_description
+        // Create the Accident Node
+        MERGE (a:Accident {accident_id: acc.accident_id})
+        SET a.date = datetime(acc.date),
+            a.weather = acc.weather_conditions,
+            a.description = acc.description,
+            a.severity = acc.severity_level,
+            a.location = point({latitude: acc.location.lat, longitude: acc.location.lon}),
+            a.location_desc = acc.location.desc,
+            a.name = acc.accident_id
+            
+        // Link Involved Cars and their damage details
+        WITH a, acc
+        UNWIND acc.involved_cars AS car_data
+        MATCH (c:Car {registration_number: car_data.registration_number})
+        MERGE (c)-[r:INVOLVED_IN]->(a)
+        SET r.damage_level = car_data.damage_level,
+            r.damage_desc = car_data.damage_description
 
-            // Link Involved People and their roles and injuries
-            WITH a, acc, car_data
-            UNWIND acc.involved_persons AS person_data
-            MATCH (p:Person {social_security_number: person_data.ssn})
-            MERGE (p)-[r:INVOLVED_IN]->(a)
-            SET r.role = person_data.role,
-                r.injuries = person_data.injuries
+        // Link Involved People and their roles and injuries
+        WITH a, acc, car_data
+        UNWIND acc.involved_persons AS person_data
+        MATCH (p:Person {social_security_number: person_data.ssn})
+        MERGE (p)-[r:INVOLVED_IN]->(a)
+        SET r.role = person_data.role,
+            r.injuries = person_data.injuries
 
-            // Check for "At Fault" party and create relationship
-            WITH a, acc, car_data
-            WHERE car_data.at_fault_party IS NOT NULL
-            MATCH (p_fault:Person {social_security_number: car_data.at_fault_party})
-            MERGE (p_fault)-[:CAUSED]->(a)
+        // Check for "At Fault" party and create relationship
+        WITH a, acc, car_data
+        WHERE car_data.at_fault_party IS NOT NULL
+        MATCH (p_fault:Person {social_security_number: car_data.at_fault_party})
+        MERGE (p_fault)-[:CAUSED]->(a)
 
             """, accidents=json_data.get("accidents", []), database_="neo4j")
     print(f"Imported {len(json_data.get("accidents", []))} accidents into DB.")
 
 def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
     n.execute_query("""
-            UNWIND $claims AS c
-            MERGE (cl:Claim {claim_id: c.claim_id})
-            SET cl.date_filed = datetime(c.date_filed),
-                cl.claimant = c.claimant,
-                cl.policy_number = c.policy_number,
-                cl.accident_id = c.accident_id,
-                cl.claim_amount = c.claim_amount,
-                cl.status = c.status,
-                cl.name = c.claim_id
-                
-            WITH c, cl
-            MATCH (p:Person {social_security_number: cl.claimant})
-            MERGE (p)-[r:FILED]->(cl)
+        UNWIND $claims AS c
+        MERGE (cl:Claim {claim_id: c.claim_id})
+        SET cl.date_filed = datetime(c.date_filed),
+            cl.claimant = c.claimant,
+            cl.policy_number = c.policy_number,
+            cl.accident_id = c.accident_id,
+            cl.claim_amount = c.claim_amount,
+            cl.status = c.status,
+            cl.name = c.claim_id
             
-            WITH c, cl
-            MATCH (pol:Policy {policy_id: cl.policy_number})
-            MERGE (cl)-[r:FILED_UNDER]->(pol)
-            
-            WITH c, cl
-            MATCH (a:Accident {accident_id: cl.accident_id})
-            MERGE (cl)-[r:ARISING_FROM]->(a)
+        WITH c, cl
+        MATCH (p:Person {social_security_number: cl.claimant})
+        MERGE (p)-[r:FILED]->(cl)
+        
+        WITH c, cl
+        MATCH (pol:Policy {policy_id: cl.policy_number})
+        MERGE (cl)-[r:FILED_UNDER]->(pol)
+        
+        WITH c, cl
+        MATCH (a:Accident {accident_id: cl.accident_id})
+        MERGE (cl)-[r:ARISING_FROM]->(a)
     """, claims=json_data.get("claims", []), database_="neo4j")
     print(f"Imported {len(json_data.get("claims", []))} claims into DB.")
 
