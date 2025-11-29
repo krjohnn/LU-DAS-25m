@@ -63,7 +63,7 @@ def import_person_data(n, json_data: List[Dict[str, Any]]) -> None:
     UNWIND $persons AS person
     MERGE (p:Person {social_security_number: person.social_security_number})
     SET p.full_name = person.full_name,
-        p.date_of_birth = person.date_of_birth,
+        p.date_of_birth = date(person.date_of_birth),
         p.address = person.address,
         p.phone_number = person.phone_number,
         p.risk_level = person.risk_level
@@ -76,8 +76,8 @@ def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
     MERGE (pol:Policy {policy_id: policy.policy_id})
     SET pol.policy_type = policy.policy_type, 
         pol.type_of_insurance = policy.type_of_insurance, 
-        pol.start_date = policy.start_date, 
-        pol.end_date = policy.end_date, 
+        pol.start_date = date(policy.start_date), 
+        pol.end_date = date(policy.end_date), 
         pol.insured_person = policy.insured_person, 
         pol.deductible_amount = policy.deductible_amount, 
         pol.coverage_amount = policy.coverage_amount,
@@ -86,11 +86,11 @@ def import_policy_data(n, json_data: List[Dict[str, Any]]) -> None:
     
     WITH pol
     MATCH (p:Person {social_security_number: pol.insured_person})
-    MERGE (pol)-[:INSURES]->(p)
+    MERGE (pol)-[:COVERS]->(p)
     
     WITH pol
     MATCH (c:InsuranceCompany {id: pol.insurance_company_id})
-    MERGE (c)-[:ISSUER]->(pol)
+    MERGE (c)-[:ISSUED]->(pol)
     """, policies=json_data.get("policies", []), database_="neo4j")
     print(f"Imported {len(json_data.get("policies", []))} policies into DB.")
 
@@ -100,10 +100,10 @@ def import_car_data(n, json_data: List[Dict[str, Any]]) -> None:
         MERGE (c:Car {registration_number: car.registration_number, vin: car.vin})
         SET c.make = car.make,
             c.model = car.model,
-            c.year = car.year,
+            c.year = toInteger(car.year),
             c.owner = car.owner,
-            c.technical_inspection_date = car.technical_inspection_date,
-            c.technical_inspection_end_date = car.technical_inspection_end_date,
+            c.technical_inspection_date = date(car.technical_inspection_date),
+            c.technical_inspection_end_date = date(car.technical_inspection_end_date),
             c.policy_number = car.policy_number
         
         WITH c        
@@ -172,11 +172,15 @@ def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
                 
             WITH c, cl
             MATCH (p:Person {social_security_number: cl.claimant})
-            MERGE (cl)-[r:CLAIMANT]->(p)
+            MERGE (p)-[r:FILED]->(cl)
             
             WITH c, cl
             MATCH (pol:Policy {policy_id: cl.policy_number})
-            MERGE (cl)-[r:AGAINST_POLICY]->(pol)
+            MERGE (cl)-[r:FILED_UNDER]->(pol)
+            
+            WITH c, cl
+            MATCH (a:Accident {accident_id: cl.accident_id})
+            MERGE (cl)-[r:ARISING_FROM]->(a)
     """, claims=json_data.get("claims", []), database_="neo4j")
     print(f"Imported {len(json_data.get("claims", []))} claims into DB.")
 
