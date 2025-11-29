@@ -187,7 +187,7 @@ def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
 
 def run_report_1(n) -> None:
     records, summary, keys = n.execute_query("""
-            // Center - "Brīvības piemineklis"
+            // centerPoint - "Brīvības piemineklis"
             WITH point({latitude: 56.951, longitude: 24.113}) AS centerPoint
             
             MATCH (a:Accident)-[:INVOLVED_IN]-(p:Person)-[:INSURES]-(pol:Policy)-[:ISSUER]-(ic:InsuranceCompany)
