@@ -187,40 +187,41 @@ def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
 
 def run_report_1(n) -> None:
     records, summary, keys = n.execute_query("""
-            // centerPoint - "Brīvības piemineklis"
-            WITH point({latitude: 56.951, longitude: 24.113}) AS centerPoint
-            
-            MATCH (a:Accident)-[:INVOLVED_IN]-(p:Person)-[:INSURES]-(pol:Policy)-[:ISSUER]-(ic:InsuranceCompany)
-            WHERE point.distance(a.location, centerPoint) < 20000 
-              AND p.date_of_birth >= "1991"
-              AND ic.name CONTAINS "ERGO"
-            
-            RETURN DISTINCT a.accident_id as AccidentID, 
-                   apoc.temporal.format(a.date,'dd MMMM yyyy HH:mm') as AccidentDate, 
-                   a.location_desc as LocationDescription, 
-                   a.weather as WeatherDescription,
-                   p.full_name as FullName,
-                   p.date_of_birth as DateOfBirth,
-                   ic.name as InsuranceCompany,
-                   round(point.distance(a.location, centerPoint)) AS DistanceFromCenter
-            ORDER BY DistanceFromCenter ASC
+        // centerPoint - "Brīvības piemineklis"
+        WITH point({latitude: 56.951, longitude: 24.113}) AS centerPoint
+        
+        MATCH (a:Accident)-[:INVOLVED_IN]-(p:Person)-[:COVERS]-(pol:Policy)-[:ISSUED]-(ic:InsuranceCompany)
+        WHERE point.distance(a.location, centerPoint) < 20000 
+          AND p.date_of_birth >= date("1991-01-01")
+          AND ic.name CONTAINS "ERGO"
+        
+        RETURN DISTINCT a.accident_id as AccidentID, 
+               apoc.temporal.format(a.date,'dd MMMM yyyy HH:mm') as AccidentDate, 
+               a.location_desc as LocationDescription, 
+               a.weather as WeatherDescription,
+               p.full_name as FullName,
+               p.date_of_birth as DateOfBirth,
+               ic.name as InsuranceCompany,
+               round(point.distance(a.location, centerPoint)) AS DistanceFromCenter
+        ORDER BY DistanceFromCenter ASC
     """, database_="neo4j")
-    print(
-        "AccidentID\tAccidentDate\tLocationDescription\tWeatherDescription\tFullName\tDateOfBirth\tInsuranceCompany\tDistanceFromCenter")
+    print("AccidentID\tAccidentDate\tLocationDescription\tWeatherDescription\tFullName\tDateOfBirth\tInsuranceCompany\tDistanceFromCenter")
     for r in records:
         print(f"{r['AccidentID']}\t{r['AccidentDate']}\t{r['LocationDescription']}\t{r['WeatherDescription']}\t{r['FullName']}\t{r['DateOfBirth']}\t{r['InsuranceCompany']}\t{r['DistanceFromCenter']}")
 
 def run_report_2(n) -> None:
     records, summary, keys = n.execute_query("""
-            MATCH (p:Person)-[:INVOLVED_IN]-(a:Accident)
-            RETURN p.full_name as FullName, 
+        MATCH (p:Person)-[:INVOLVED_IN]-(a:Accident)
+        RETURN p.full_name as FullName,
                p.social_security_number as SocialSecurityNumber,
-               COUNT(DISTINCT a) as TotalCrashes
-            ORDER BY TotalCrashes DESC
+               COUNT(DISTINCT a) AS TotalAccidents,
+               ROUND(AVG(a.severity),2) as AverageAccidentSeverity
+        ORDER BY TotalAccidents DESC
+        LIMIT 5
     """, database_="neo4j")
-    print("FullName\tSocialSecurityNumber\tTotalCrashes")
+    print("FullName\tSocialSecurityNumber\tTotalAccidents\tAverageAccidentSeverity")
     for r in records:
-        print(f"{r['FullName']}\t{r['SocialSecurityNumber']}\t{r['TotalCrashes']}")
+        print(f"{r['FullName']}\t{r['SocialSecurityNumber']}\t{r['TotalAccidents']}\t{r['AverageAccidentSeverity']}")
 
 def main():
     n = connect_to_neo4j()
@@ -230,6 +231,7 @@ def main():
     json_data = load_json(filename="in_import_data.json")
 
     run_report_1(n)
+    print("\n")
     run_report_2(n)
     return
 
