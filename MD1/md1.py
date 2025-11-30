@@ -142,52 +142,99 @@ def find_actors_with_award(r: redis.Redis, find_award: str) -> None:
             for key, value in actor.items():
                 print(f"{key}: {value}")
 
+
 def main():
     r = connect_to_redis()
     if not r:
         return
 
-    if(r.dbsize() == 0):
-        print("Redis database is empty. Inserting movie data...")
+    # Check Database State
+    key_count = r.dbsize()
 
-        # Add 100 entries - Done
-        json_data = load_json(filename="in_import_data.json")
-        import_movie_data(r, json_data)
-        import_director_data(r, json_data)
-        import_actor_data(r, json_data)
+    perform_import = False
 
-        # Edit 50 entires - To Dd
-        input("Press Enter to update 50 movie entries...")
-        json_data = load_json(filename="in_update_data.json")
-        update_movie_data(r, json_data)
+    if key_count > 0:
+        print(f"\nDatabase currently contains {key_count} keys.")
+        user_input = input("Delete existing data and re-import? (y/N): ").strip().lower()
 
-        # Select 50 entries - To Do
-        input("Press Enter to select movie data by name...")
-        select_movie_data_by_name(r, movie_name=["Pulp Fiction", "Inception", "Interstellar", "The Dark Knight", "Forrest Gump", "The Matrix", "The Shawshank Redemption", "The Godfather", "The Lord of the Rings: The Return of the King", "Fight Club"])
-        input("Press Enter to select top n movies by revenue...")
-        select_top_n_movies_by_revenue(r, "top",10)
-        input("Press Enter to select bottom n movies by revenue...")
-        select_top_n_movies_by_revenue(r, "bottom", 10)
-        input("Press Enter to select movie titles by genre...")
-        select_movies_by_genre(r, "Sci-Fi")
-        input("Press Enter to find actors data by award name...")
-        find_actors_with_award(r, "Emmy")
-
-        # Delete 50 entries - To Do
-        input("Press Enter to delete movie and related entries...")
-        json_data = load_json(filename="in_delete_data.json")
-        delete_movie_data(r, json_data)
-
-        input("Press Enter to select movie titles by genre after Deletion...")
-        select_movies_by_genre(r, "Sci-Fi")
-
+        if user_input == 'y':
+            print("Flushing database...")
+            r.flushall()
+            perform_import = True
+        else:
+            print("Using existing data. Skipping import.")
     else:
-        print(f"Redis database is not empty: {r.dbsize()} entries found.")
-        print(f"Flush the database to re-insert movie data.")
-        r.flushall()
+        print("Database is empty. Starting fresh import.")
+        perform_import = True
+
+    if perform_import:
+        print("\n" + "=" * 40)
+        print("      STARTING IMPORT PROCESS")
+        print("=" * 40)
+
+        json_data = load_json(filename="in_import_data.json")
+
+        import_steps = [
+            (import_movie_data, "Movies"),
+            (import_director_data, "Directors"),
+            (import_actor_data, "Actors")
+        ]
+
+        input(f"Press Enter to proceed to next step...")
+        for func, description in import_steps:
+            print(f"\n>>> Importing {description}...")
+            func(r, json_data)
+            input(f"Press Enter to proceed to next step...")
+
+        print("\n" + "=" * 40)
+        print("      IMPORT COMPLETE")
+        print("=" * 40 + "\n")
+
+    print("\n" + "=" * 40)
+    print("      STARTING OPERATIONS & QUERIES")
+    print("=" * 40)
+
+    print("\n[ Operation: Update Movies ]")
+    print("Loading in_update_data.json...")
+    json_update = load_json(filename="in_update_data.json")
+    update_movie_data(r, json_update)
+    input(f"Updates applied. Press Enter to proceed to Queries...")
+
+    print("\n[ Operation: Run Selections ]")
+
+    print(">>> Selecting movies by name...")
+    select_movie_data_by_name(r, movie_name=["Pulp Fiction", "Inception", "Interstellar", "The Dark Knight",
+                                             "Forrest Gump"])
+
+    print("\n>>> Selecting Top 10 by Revenue...")
+    select_top_n_movies_by_revenue(r, "top", 10)
+
+    print("\n>>> Selecting Bottom 10 by Revenue...")
+    select_top_n_movies_by_revenue(r, "bottom", 10)
+
+    print("\n>>> Selecting 'Sci-Fi' Movies...")
+    select_movies_by_genre(r, "Sci-Fi")
+
+    print("\n>>> Finding Actors with 'Emmy'...")
+    find_actors_with_award(r, "Emmy")
+
+    input(f"Queries complete. Press Enter to proceed to Deletion...")
+
+    print("\n[ Operation: Delete Movies ]")
+    print("Loading in_delete_data.json...")
+    json_delete = load_json(filename="in_delete_data.json")
+    delete_movie_data(r, json_delete)
+
+    print("\n>>> Verifying Deletion (Querying 'Sci-Fi' again)...")
+    select_movies_by_genre(r, "Sci-Fi")
+
+    print("\n" + "=" * 40)
+    print("      OPERATIONS ARE COMPLETE")
+    print("=" * 40)
 
     r.close()
     return
+
 
 if __name__ == "__main__":
     main()

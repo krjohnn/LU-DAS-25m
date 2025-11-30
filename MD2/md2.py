@@ -290,26 +290,64 @@ def main():
     if not n:
         return
 
-    json_data = load_json(filename="in_import_data.json")
+    result = n.execute_query("MATCH (n) RETURN count(n) AS node_count", database_="neo4j")
+    node_count = result.records[0]["node_count"]
 
-    import_insurance_company_data(n, json_data)
-    import_person_data(n, json_data)
-    import_policy_data(n, json_data)
-    import_car_data(n, json_data)
-    import_accident_data(n, json_data)
-    import_claim_data(n, json_data)
+    perform_import = False
 
-    run_report_1(n)
-    print("\n")
-    run_report_2(n)
-    print("\n")
-    run_report_3(n)
-    print("\n")
-    run_report_4(n)
-    print("\n")
-    run_report_5(n)
+    if node_count > 0:
+        print(f"\nDatabase currently contains {node_count} nodes.")
+        user_input = input("Delete existing data and re-import? (y/N): ").strip().lower()
 
-    #delete_all_nodes(n)
+        if user_input == 'y':
+            print("Deleting all nodes...")
+            delete_all_nodes(n)
+            perform_import = True
+        else:
+            print("Using existing data. Skipping import.")
+    else:
+        print("Database is empty. Starting fresh import.")
+        perform_import = True
+
+    if perform_import:
+        print("\n" + "=" * 40)
+        print("      STARTING IMPORT PROCESS")
+        print("=" * 40)
+
+        json_data = load_json(filename="in_import_data.json")
+
+        import_steps = [
+            (import_insurance_company_data, "Insurance Companies"),
+            (import_person_data, "Persons"),
+            (import_policy_data, "Policies"),
+            (import_car_data, "Cars"),
+            (import_accident_data, "Accidents"),
+            (import_claim_data, "Claims")
+        ]
+        input(f"Press Enter to proceed to next step...")
+        for func, description in import_steps:
+            print(f"\n>>> Importing {description}...")
+            func(n, json_data)
+            input(f"Press Enter to proceed to next step...")
+
+        print("\n" + "=" * 40)
+        print("      IMPORT COMPLETE")
+        print("=" * 40 + "\n")
+
+    print("\n" + "=" * 40)
+    print("      STARTING REPORTS")
+    print("=" * 40)
+    reports = [run_report_1, run_report_2, run_report_3, run_report_4, run_report_5]
+
+    for i, report_func in enumerate(reports, 1):
+        print(f"\n[ Report {i} ]")
+        report_func(n)
+        print("-" * 30)
+
+    print("\n" + "=" * 40)
+    print("      REPORTS ARE COMPLETE")
+    print("=" * 40)
+
     n.close()
     return
 
