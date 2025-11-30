@@ -185,6 +185,106 @@ def import_claim_data(n, json_data: List[Dict[str, Any]]) -> None:
     """, claims=json_data.get("claims", []), database_="neo4j")
     print(f"Imported {len(json_data.get("claims", []))} claims into DB.")
 
+def run_report_1(n) -> None:
+    records, summary, keys = n.execute_query("""
+        // centerPoint - "Brīvības piemineklis"
+        WITH point({latitude: 56.951, longitude: 24.113}) AS centerPoint
+        
+        MATCH (a:Accident)-[:INVOLVED_IN]-(p:Person)-[:COVERS]-(pol:Policy)-[:ISSUED]-(ic:InsuranceCompany)
+        WHERE point.distance(a.location, centerPoint) < 20000 
+          AND p.date_of_birth >= date("1991-01-01")
+          AND ic.name CONTAINS "ERGO"
+        
+        RETURN DISTINCT a.accident_id as AccidentID, 
+               apoc.temporal.format(a.date,'dd MMMM yyyy HH:mm') as AccidentDate, 
+               a.location_desc as LocationDescription, 
+               a.weather as WeatherDescription,
+               p.full_name as FullName,
+               p.date_of_birth as DateOfBirth,
+               ic.name as InsuranceCompany,
+               round(point.distance(a.location, centerPoint)) AS DistanceFromCenter
+        ORDER BY DistanceFromCenter ASC
+    """, database_="neo4j")
+    print("AccidentID\tAccidentDate\tLocationDescription\tWeatherDescription\tFullName\tDateOfBirth\tInsuranceCompany\tDistanceFromCenter")
+    for r in records:
+        print(f"{r['AccidentID']}\t{r['AccidentDate']}\t{r['LocationDescription']}\t{r['WeatherDescription']}\t{r['FullName']}\t{r['DateOfBirth']}\t{r['InsuranceCompany']}\t{r['DistanceFromCenter']}")
+
+def run_report_2(n) -> None:
+    records, summary, keys = n.execute_query("""
+        MATCH (p:Person)-[:INVOLVED_IN]-(a:Accident)
+        RETURN p.full_name as FullName,
+               p.social_security_number as SocialSecurityNumber,
+               COUNT(DISTINCT a) AS TotalAccidents,
+               ROUND(AVG(a.severity),2) as AverageAccidentSeverity
+        ORDER BY TotalAccidents DESC
+        LIMIT 5
+    """, database_="neo4j")
+    print("FullName\tSocialSecurityNumber\tTotalAccidents\tAverageAccidentSeverity")
+    for r in records:
+        print(f"{r['FullName']}\t{r['SocialSecurityNumber']}\t{r['TotalAccidents']}\t{r['AverageAccidentSeverity']}")
+
+def run_report_3(n) -> None:
+    records, summary, keys = n.execute_query("""
+        MATCH (ic:InsuranceCompany)-[:ISSUED]-(pol:Policy)
+        OPTIONAL MATCH (pol)-[:FILED_UNDER]-(cl:Claim)
+        WHERE cl.status IN ['approved', 'pending']
+        WITH ic, pol, SUM(COALESCE(cl.claim_amount, 0)) AS PolicyClaimTotal
+        RETURN 
+            ic.name AS InsuranceCompanyName,
+            SUM(pol.coverage_amount) AS PotentialLiability,
+            SUM(PolicyClaimTotal) AS RealizedClaimCosts,
+            (SUM(pol.coverage_amount) + SUM(PolicyClaimTotal)) AS TotalExposure
+        ORDER BY 
+            TotalExposure DESC
+        LIMIT 5
+    """, database_="neo4j")
+    print("InsuranceCompanyName\tPotentialLiability\tRealizedClaimCosts\tTotalExposure")
+    for r in records:
+        print(f"{r['InsuranceCompanyName']}\t{r['PotentialLiability']}\t{r['RealizedClaimCosts']}\t{r['TotalExposure']}")
+
+def run_report_4(n) -> None:
+    records, summary, keys = n.execute_query("""
+    MATCH (a:Accident)
+    WITH a,
+      CASE 
+        WHEN toLower(a.weather) CONTAINS 'snow' 
+          OR toLower(a.weather) CONTAINS 'ice' 
+          OR toLower(a.weather) CONTAINS 'hail' 
+          THEN 'High Risk'
+        WHEN toLower(a.weather) CONTAINS 'rain' 
+          OR toLower(a.weather) CONTAINS 'wet' 
+          THEN 'Moderate Risk (Rain/Wet)'
+        WHEN toLower(a.weather) IN ['fog', 'dusk', 'mist'] 
+          OR toLower(a.weather) = 'wind'
+          THEN 'Moderate Risk (Visibility/Wind)'
+        ELSE 'Low Risk (Clear/Dry)'
+      END AS WeatherCategory
+    RETURN 
+      WeatherCategory,
+      count(a) as AccidentCount,
+      round(avg(a.severity), 2) as AvgSeverity
+    ORDER BY AvgSeverity DESC
+    """, database_="neo4j")
+    print("WeatherCategory\tAccidentCount\tAvgSeverity")
+    for r in records:
+        print(f"{r['WeatherCategory']}\t{r['AccidentCount']}\t{r['AvgSeverity']}")
+
+def run_report_5(n) -> None:
+    records, summary, keys = n.execute_query("""
+    MATCH (cl:Claim)-[:FILED_UNDER]-(pol:Policy)
+    MATCH (pol)-[:ISSUED]-(ic:InsuranceCompany)
+      WHERE cl.status = 'approved'
+    RETURN 
+      ic.name AS InsuranceCompany,
+      MAX(cl.claim_amount) AS MaxClaimAmount
+    ORDER BY
+      MaxClaimAmount DESC
+    LIMIT 1
+    """, database_="neo4j")
+    print("InsuranceCompany\tMaxClaimAmount")
+    for r in records:
+        print(f"{r['InsuranceCompany']}\t{r['MaxClaimAmount']}")
+
 def main():
     n = connect_to_neo4j()
     if not n:
@@ -198,6 +298,16 @@ def main():
     import_car_data(n, json_data)
     import_accident_data(n, json_data)
     import_claim_data(n, json_data)
+
+    run_report_1(n)
+    print("\n")
+    run_report_2(n)
+    print("\n")
+    run_report_3(n)
+    print("\n")
+    run_report_4(n)
+    print("\n")
+    run_report_5(n)
 
     #delete_all_nodes(n)
     n.close()
