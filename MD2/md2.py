@@ -292,6 +292,13 @@ def main():
 
     json_data = load_json(filename="in_import_data.json")
 
+    import_insurance_company_data(n, json_data)
+    import_person_data(n, json_data)
+    import_policy_data(n, json_data)
+    import_car_data(n, json_data)
+    import_accident_data(n, json_data)
+    import_claim_data(n, json_data)
+
     run_report_1(n)
     print("\n")
     run_report_2(n)
@@ -301,14 +308,6 @@ def main():
     run_report_4(n)
     print("\n")
     run_report_5(n)
-    return
-
-    import_insurance_company_data(n, json_data)
-    import_person_data(n, json_data)
-    import_policy_data(n, json_data)
-    import_car_data(n, json_data)
-    import_accident_data(n, json_data)
-    import_claim_data(n, json_data)
 
     #delete_all_nodes(n)
     n.close()
