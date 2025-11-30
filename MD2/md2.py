@@ -223,6 +223,27 @@ def run_report_2(n) -> None:
     for r in records:
         print(f"{r['FullName']}\t{r['SocialSecurityNumber']}\t{r['TotalAccidents']}\t{r['AverageAccidentSeverity']}")
 
+def run_report_3(n) -> None:
+    records, summary, keys = n.execute_query("""
+        MATCH (ic:InsuranceCompany)-[:ISSUED]-(pol:Policy)
+        OPTIONAL MATCH (pol)-[:FILED_UNDER]-(cl:Claim)
+        WHERE cl.status IN ['approved', 'pending']
+        WITH ic, pol, SUM(COALESCE(cl.claim_amount, 0)) AS PolicyClaimTotal
+        RETURN 
+            ic.name AS InsuranceCompanyName,
+            SUM(pol.coverage_amount) AS PotentialLiability,
+            SUM(PolicyClaimTotal) AS RealizedClaimCosts,
+            (SUM(pol.coverage_amount) + SUM(PolicyClaimTotal)) AS TotalExposure
+        ORDER BY 
+            TotalExposure DESC
+        LIMIT 5
+    """, database_="neo4j")
+    print("InsuranceCompanyName\tPotentialLiability\tRealizedClaimCosts\tTotalExposure")
+    for r in records:
+        print(f"{r['InsuranceCompanyName']}\t{r['PotentialLiability']}\t{r['RealizedClaimCosts']}\t{r['TotalExposure']}")
+
+
+
 def main():
     n = connect_to_neo4j()
     if not n:
@@ -233,6 +254,9 @@ def main():
     run_report_1(n)
     print("\n")
     run_report_2(n)
+    print("\n")
+    run_report_3(n)
+    print("\n")
     return
 
     import_insurance_company_data(n, json_data)
