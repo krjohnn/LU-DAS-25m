@@ -22,17 +22,14 @@ def connect_to_mongodb():
         logging.error("Required environment variables (HOST, USER, PASSWORD) are not set.")
         return None
 
-    # Use f-string for cleaner syntax
     uri = f"mongodb+srv://{mongo_user}:{mongo_password}@{mongo_host}"
 
     try:
         client = MongoClient(uri, server_api=ServerApi('1'))
-
-        # Verify connection
         client.admin.command('ping')
         logging.info("Successfully connected to MongoDB!")
 
-        return client  # Return the client so other functions can use it!
+        return client
 
     except (ConnectionFailure, ConfigurationError) as e:
         logging.error(f"MongoDB Connection failed: {e}")
@@ -48,10 +45,10 @@ def load_json(filename="data.json"):
             data = json.load(f)
             return data
     except FileNotFoundError:
-        print(f"File {filename} not found.")
+        logging.error(f"File {filename} not found.")
         raise
     except json.decoder.JSONDecodeError:
-        print(f"Error decoding JSON from file {filename}.")
+        logging.error(f"Error decoding JSON from file {filename}.")
         raise
 
 def main():
