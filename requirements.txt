@@ -2,3 +2,5 @@ python-dotenv==1.2.1
 redis==7.0.1
 neo4j==6.0.3
 pymongo==4.15.4
+faker==38.2.0
+numpy==2.3.5
