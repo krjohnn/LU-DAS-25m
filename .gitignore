@@ -30,3 +30,8 @@ __pycache__/
 build/
 dist/
 *.egg-info
+
+# 6. LOG FILES
+# Log files can grow quite large and are usually
+# not useful to commit.
+*.log
