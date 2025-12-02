@@ -1,0 +1,212 @@
+[
+    {
+        "station_id": "f24b7286-359a-42b2-8606-c1916e439547",
+        "operator": "e-mobi",
+        "location_city": "Rīga",
+        "max_power_kw": 50,
+        "status": "Maintenance"
+    },
+    {
+        "station_id": "77c78eda-752b-43e7-8f61-1820d0145b65",
+        "operator": "Elektrum Drive",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Offline"
+    },
+    {
+        "station_id": "8a12fd4d-836d-402a-8480-f6f033b76ea9",
+        "operator": "Eleport",
+        "location_city": "Jūrmala",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "615935b7-309b-4e37-bed5-84880e0d68d2",
+        "operator": "Virši",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Maintenance"
+    },
+    {
+        "station_id": "1dec6efd-7933-43e3-997d-a46890ff3f96",
+        "operator": "Ignitis ON",
+        "location_city": "Rīga",
+        "max_power_kw": 250,
+        "status": "Online"
+    },
+    {
+        "station_id": "80627a57-ad9b-4d05-8953-840d80ea80b1",
+        "operator": "Elektrum Drive",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Maintenance"
+    },
+    {
+        "station_id": "dd55477e-0635-470f-b13f-a742bc8a3185",
+        "operator": "Eleport",
+        "location_city": "Liepāja",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "d8141fcd-f1e3-4627-ae96-c4f101adb377",
+        "operator": "Virši",
+        "location_city": "Jūrmala",
+        "max_power_kw": 350,
+        "status": "Online"
+    },
+    {
+        "station_id": "177f929b-9ac9-4c93-9471-1ab440f30fb0",
+        "operator": "Virši",
+        "location_city": "Jūrmala",
+        "max_power_kw": 350,
+        "status": "Offline"
+    },
+    {
+        "station_id": "e8d9f8d6-aa2c-4532-acfb-86270c8b6f27",
+        "operator": "Enefit",
+        "location_city": "Rīga",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "d410e511-0c18-49c2-9c0c-4fb2d18f08c7",
+        "operator": "Enefit",
+        "location_city": "Rīga",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "fffd703b-6b3a-404d-b2eb-de69e1842b71",
+        "operator": "Ignitis ON",
+        "location_city": "Rīga",
+        "max_power_kw": 50,
+        "status": "Maintenance"
+    },
+    {
+        "station_id": "db057367-14ba-4012-b375-9c3eb10ff26c",
+        "operator": "Ignitis ON",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Online"
+    },
+    {
+        "station_id": "6f661c77-455e-4780-812f-90030b70c5c0",
+        "operator": "Elektrum Drive",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Offline"
+    },
+    {
+        "station_id": "040a5936-3ec4-4dee-b0ec-91273ae914e0",
+        "operator": "Virši",
+        "location_city": "Rīga",
+        "max_power_kw": 250,
+        "status": "Maintenance"
+    },
+    {
+        "station_id": "890368a5-49b9-44e7-a24c-8602543bc9dc",
+        "operator": "Virši",
+        "location_city": "Rīga",
+        "max_power_kw": 150,
+        "status": "Offline"
+    },
+    {
+        "station_id": "8b1ef9f6-7cda-444e-93b6-2c6ed353d2ab",
+        "operator": "Virši",
+        "location_city": "Ventspils",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "799e4cef-1206-44cd-a92a-d5140f0d409f",
+        "operator": "Eleport",
+        "location_city": "Rīga",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "d0adc267-a295-4400-a586-f8e7f7ed5575",
+        "operator": "e-mobi",
+        "location_city": "Ventspils",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "9db9f666-ae3b-4a13-8d2b-232fda2838ee",
+        "operator": "Enefit",
+        "location_city": "Ventspils",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "ee9b1db4-69d9-450b-bf4f-077fa049c8c6",
+        "operator": "Fiqsy",
+        "location_city": "Rīga",
+        "max_power_kw": 350,
+        "status": "Online"
+    },
+    {
+        "station_id": "a5a6963c-d06d-44d9-b38c-aa2ac70e5067",
+        "operator": "Ignitis ON",
+        "location_city": "Jēkabpils",
+        "max_power_kw": 350,
+        "status": "Offline"
+    },
+    {
+        "station_id": "96a07f99-9593-4013-b8e5-c629cd82354f",
+        "operator": "Ignitis ON",
+        "location_city": "Liepāja",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "487e2087-f04a-4675-98fb-caefa32f611a",
+        "operator": "Enefit",
+        "location_city": "Valmiera",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "2a006c04-7e82-4b7b-bb7e-5e5729eb7dc5",
+        "operator": "Eleport",
+        "location_city": "Rīga",
+        "max_power_kw": 250,
+        "status": "Offline"
+    },
+    {
+        "station_id": "50d8a0f0-9d67-4004-a21f-4aa565e6db95",
+        "operator": "Virši",
+        "location_city": "Jēkabpils",
+        "max_power_kw": 50,
+        "status": "Online"
+    },
+    {
+        "station_id": "f3043199-eda7-4dbe-bb80-caef8c92f491",
+        "operator": "Eleport",
+        "location_city": "Liepāja",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "585a402f-1c68-4e81-a181-ec6904cc9ce0",
+        "operator": "Elektrum Drive",
+        "location_city": "Rīga",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "1e6af67c-bc73-4a05-a628-7c3364877a41",
+        "operator": "Elektrum Drive",
+        "location_city": "Rīga",
+        "max_power_kw": 150,
+        "status": "Online"
+    },
+    {
+        "station_id": "19985f8f-52ba-4a92-84fc-ec08e26ffa87",
+        "operator": "Ignitis ON",
+        "location_city": "Jūrmala",
+        "max_power_kw": 250,
+        "status": "Online"
+    }
+]
