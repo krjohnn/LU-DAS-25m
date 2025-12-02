@@ -61,20 +61,24 @@ def drop_database(mongo_client, db_name="EV_Monitoring"):
         raise
 
 def main():
-    logging.basicConfig(level=logging.INFO)
+    # logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(filename="log.log",
+                        filemode='a',
+                        format='%(asctime)s,%(msecs)03d %(name)s %(levelname)s %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        level=logging.INFO)
 
     m = connect_to_mongodb()
     if not m:
         return
 
-
-
-    db_exists = "EV_Monitoring" in m.list_database_names()
+    DB_NAME = "EV_Monitoring"
+    db_exists = DB_NAME in m.list_database_names()
 
     perform_import = False
 
     if db_exists:
-        logging.info("Database 'EV_Monitoring' already exists.")
+        logging.info(f"Database {DB_NAME} already exists.")
         user_input = input("Delete existing database and re-import? (y/N): ").strip().lower()
 
         if user_input == 'y':
@@ -83,15 +87,23 @@ def main():
             perform_import = True
         else:
             logging.info("Using existing data. Skipping import.")
+    else:
+        perform_import = True
+        logging.info(f"Creating new database {DB_NAME}.")
 
     if perform_import:
-        logging.info("Importing data.")
+        logging.info("\n" + "=" * 40 + "\n      STARTING IMPORT PROCESS" + "\n" + "=" * 40)
+
+        json_data = load_json(filename="stations.json")
+
+        logging.info("\n" + "=" * 40 + "\n      IMPORT COMPLETE" + "\n" + "=" * 40)
         return
 
-    return
+    logging.info("\n" + "=" * 40 + "\n      STARTING REPORTS" + "\n" + "=" * 40)
+    reports = []
+    logging.info("\n" + "=" * 40 + "\n      REPORTS ARE COMPLETE" + "\n" + "=" * 40)
 
-    json_data = load_json(filename="stations.json")
-
+    """
     print(m.get_database("sample_mflix"))
     db = m["EV_Monitoring"]
     collection = db["charging_stations"]
@@ -109,11 +121,7 @@ def main():
     # collection_list = database.list_collections()
     # for c in collection_list:
     #     print(c)
-
-
-
-    logging.info("\n" + "=" * 40+"\n      STARTING IMPORT PROCESS" + "\n" + "=" * 40)
-    # do things
+    """
 
     m.close()
     return
