@@ -52,6 +52,14 @@ def load_json(filename="data.json"):
         logging.error(f"Error decoding JSON from file {filename}.")
         raise
 
+def drop_database(mongo_client, db_name="EV_Monitoring"):
+    try:
+        mongo_client.drop_database(db_name)
+        logging.info(f"Database '{db_name}' deleted successfully.")
+    except Exception as e:
+        logging.error(f"Failed to delete database '{db_name}': {e}")
+        raise
+
 def main():
     logging.basicConfig(level=logging.INFO)
 
@@ -59,7 +67,28 @@ def main():
     if not m:
         return
 
+
+
+    db_exists = "EV_Monitoring" in m.list_database_names()
+
     perform_import = False
+
+    if db_exists:
+        logging.info("Database 'EV_Monitoring' already exists.")
+        user_input = input("Delete existing database and re-import? (y/N): ").strip().lower()
+
+        if user_input == 'y':
+            logging.info("Deleting existing database and re-import.")
+            drop_database(m, db_name="EV_Monitoring")
+            perform_import = True
+        else:
+            logging.info("Using existing data. Skipping import.")
+
+    if perform_import:
+        logging.info("Importing data.")
+        return
+
+    return
 
     json_data = load_json(filename="stations.json")
 
