@@ -29,7 +29,7 @@ REPORTS = {
                 "_id": 0,
                 "session_id": 1,
                 "station_id": 1,
-                "vehicle_id": 1,
+                "vehicle_type": 1,
                 "kwh_consumed": 1,
                 "total_cost": 1,
                 "price_per_kwh": 1,
