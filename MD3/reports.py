@@ -62,7 +62,7 @@ REPORTS = {
             "sessionCount": 1
         }}
     ],
-    "Average Charging Duration by Vehicle Type": [
+    "Top 3 Average Charging Duration by Vehicle Type": [
         {
             "$lookup": {
                 "from": "stations",
@@ -100,7 +100,7 @@ REPORTS = {
             "$limit": 3
         }
     ],
-    "City with highest recorded single charging sessions (kWh)": [
+    "Top 3 cities with highest recorded single charging sessions (kWh)": [
         {
             '$lookup': {
                 'from': 'stations',
@@ -113,21 +113,36 @@ REPORTS = {
         }, {
             '$group': {
                 '_id': '$station_details.location_city',
-                'maxKwhSession': {
-                    '$max': '$kwh_consumed'
+                'topSession': {
+                    '$top': {
+                        'sortBy': {
+                            'kwh_consumed': -1
+                        },
+                        'output': {
+                            'maxKwhSession': '$kwh_consumed',
+                            'duration_minutes': '$duration_minutes',
+                            'vehicle_id': '$vehicle_id'
+                        }
+                    }
                 }
             }
         }, {
             '$sort': {
-                'maxKwhSession': -1
+                'topSession.maxKwhSession': -1
             }
         }, {
             '$project': {
                 '_id': 0,
-                'operator': '$_id',
-                # 'maxKwhSession': 1,
-                'maxKwhSession': {'$concat': [ {"$toString":'$maxKwhSession'}, ' kWh']},
-                'sessionCount': 1
+                'city': '$_id',
+                'maxKwhSession': {
+                    '$concat': [
+                        {
+                            '$toString': '$topSession.maxKwhSession'
+                        }, ' kWh'
+                    ]
+                },
+                'duration_minutes': '$topSession.duration_minutes',
+                'vehicle_id': '$topSession.vehicle_id'
             }
         }, {
             '$limit': 3
