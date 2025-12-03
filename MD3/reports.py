@@ -174,6 +174,12 @@ REPORTS = {
                 },
                 "sessionCount": {
                     "$sum": 1
+                },
+                "kwhConsumed": {
+                    "$sum": "$kwh_consumed"
+                },
+                "avgDuration": {
+                    "$avg": "$duration_minutes"
                 }
             }
         }, {
@@ -181,7 +187,13 @@ REPORTS = {
                 "_id": 0,
                 "Operator": "$_id.operator",
                 "Status": "$_id.status",
-                "sessionCount": 1
+                "sessionCount": 1,
+                "kwhConsumed": 1,
+                "RoundavgDuration": {
+                    "$round": [
+                        "$avgDuration", 2
+                    ]
+                }
             }
         }, {
             "$sort": {
