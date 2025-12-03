@@ -1,5 +1,5 @@
 REPORTS = {
-    "Complex logical filter": [
+    "1: Complex logical filter": [
         {
             "$lookup": {
                 "from": "stations",
@@ -37,7 +37,7 @@ REPORTS = {
             }
         }
     ],
-    "Revenue by Operator": [
+    "2: Revenue by Operator": [
         {
             "$lookup": {
                 "from": "stations",
@@ -62,7 +62,7 @@ REPORTS = {
             "sessionCount": 1
         }}
     ],
-    "Top 3 Average Charging Duration by Vehicle Type": [
+    "3: Top 3 Average Charging Duration by Vehicle Type": [
         {
             "$lookup": {
                 "from": "stations",
@@ -100,7 +100,7 @@ REPORTS = {
             "$limit": 3
         }
     ],
-    "Top 3 cities with highest recorded single charging sessions (kWh)": [
+    "4: Top 3 cities with highest recorded single charging sessions (kWh)": [
         {
             "$lookup": {
                 "from": "stations",
@@ -148,7 +148,7 @@ REPORTS = {
             "$limit": 3
         }
     ],
-    "Interrupted vs Completed session for each Operator": [
+    "5: Interrupted vs Completed session for each Operator": [
         {
             "$lookup": {
                 "from": "stations",

@@ -75,7 +75,7 @@ def mongo_import_collection(db, collection_name="charging_stations", data=[]):
 
 def run_report(db, collection_name, report_title, pipeline):
     logging.info(f"Running Report: {report_title}")
-    print(f"\n[REPORT] {report_title}")
+    print(f"\n[ Report {report_title} ]")
     collection = db[collection_name]
     results = list(collection.aggregate(pipeline))
     if not results:
