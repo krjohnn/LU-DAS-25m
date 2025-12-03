@@ -73,15 +73,6 @@ def mongo_import_collection(db, collection_name="charging_stations", data=[]):
         logging.error(f"Failed to import data into collection '{collection_name}': {e}")
         raise
 
-def mongo_create_database(mongo_client, db_name="EV_Monitoring"):
-    try:
-        db = mongo_client[db_name]
-        logging.info(f"Database '{db_name}' created successfully.")
-        return db
-    except Exception as e:
-        logging.error(f"Failed to create database '{db_name}': {e}")
-        raise
-
 def main():
     # logging.basicConfig(level=logging.INFO)
     logging.basicConfig(filename="log.log",
@@ -95,6 +86,8 @@ def main():
         return
 
     mongodb_name = "EV_Monitoring"
+    d = m.get_database(mongodb_name)
+
     mongodb_exists = mongodb_name in m.list_database_names()
 
     perform_import = False
@@ -105,48 +98,34 @@ def main():
 
         if user_input == 'y':
             logging.info("Deleting existing database and re-import.")
-            mongo_drop_database(m, db_name="EV_Monitoring")
+            mongo_drop_database(m, db_name=mongodb_name)
             perform_import = True
         else:
             logging.info("Using existing data. Skipping import.")
     else:
         perform_import = True
-        logging.info(f"Creating new database {mongodb_name}. Performing import.")
-        d = mongo_create_database(m, db_name=mongodb_name)
+        logging.info(f"Database {mongodb_name} does not exist! Create database and run import process.")
 
     if perform_import:
         logging.info("\n" + "=" * 40 + "\n      STARTING IMPORT PROCESS" + "\n" + "=" * 40)
 
-        json_data = load_json(filename="stations.json")
+        logging.info(f"Creating new database {mongodb_name}. Performing import.")
 
-        mongo_import_collection(d, collection_name="charging_stations", data=json_data)
+        import_steps = [
+            ("stations", "stations.json"),
+            ("sessions", "sessions.json")
+        ]
+
+        for collection_name, data in import_steps:
+            print(f"\n>>> Importing {collection_name}...")
+            mongo_import_collection(d, collection_name=collection_name, data=load_json(filename=data))
+            input(f"Press Enter to proceed to next step...")
 
         logging.info("\n" + "=" * 40 + "\n      IMPORT COMPLETE" + "\n" + "=" * 40)
-        return
 
     logging.info("\n" + "=" * 40 + "\n      STARTING REPORTS" + "\n" + "=" * 40)
     reports = []
     logging.info("\n" + "=" * 40 + "\n      REPORTS ARE COMPLETE" + "\n" + "=" * 40)
-
-    """
-    print(m.get_database("sample_mflix"))
-    db = m["EV_Monitoring"]
-    collection = db["charging_stations"]
-    requesting = []
-
-    for item in json_data:
-        requesting.append(InsertOne(item))
-
-    result = collection.bulk_write(requesting)
-    print(result)
-
-    print(m.list_database_names())
-
-
-    # collection_list = database.list_collections()
-    # for c in collection_list:
-    #     print(c)
-    """
 
     m.close()
     logging.info("MongoDB connection closed.")
