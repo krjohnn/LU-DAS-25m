@@ -73,6 +73,21 @@ def mongo_import_collection(db, collection_name="charging_stations", data=[]):
         logging.error(f"Failed to import data into collection '{collection_name}': {e}")
         raise
 
+def run_report(db, collection_name, report_title, pipeline):
+    logging.info(f"Running Report: {report_title}")
+    print(f"\n[REPORT] {report_title}")
+    collection = db[collection_name]
+    results = list(collection.aggregate(pipeline))
+    if not results:
+        print("No results found.")
+        return
+    for i, doc in enumerate(results, 1):
+        # print(f"{i}. {doc}")
+        print(f"\nResult {i}:")
+        for key, value in doc.items():
+            print(f"   {key}: {value}")
+    print("-" * 30)
+
 def main():
     # logging.basicConfig(level=logging.INFO)
     logging.basicConfig(filename="log.log",
@@ -124,7 +139,75 @@ def main():
         logging.info("\n" + "=" * 40 + "\n      IMPORT COMPLETE" + "\n" + "=" * 40)
 
     logging.info("\n" + "=" * 40 + "\n      STARTING REPORTS" + "\n" + "=" * 40)
-    reports = []
+
+    report_1 = [
+        {
+            "$lookup": {
+                "from": "stations",
+                "localField": "station_id",
+                "foreignField": "station_id",
+                "as": "station_data"
+            }
+        },
+        {
+            "$match": {
+                "station_data.location_city": "Rīga",
+                "$or": [
+                    {
+                        "station_data.status": "Offline"
+                    },
+                    {
+                        "station_data.status": "Maintenance"
+                    }
+                ],
+                "price_per_kwh": {"$lte": 30.0},
+                "status": "Completed",
+                "total_cost": {"$gte": 20.0}
+            }
+        },
+        {
+            "$project": {
+                "_id": 0,
+                "session_id": 1,
+                "station_id": 1,
+                "vehicle_id": 1,
+                "kwh_consumed": 1,
+                "total_cost": 1,
+                "price_per_kwh": 1,
+                "status": 1
+            }
+        }
+    ]
+
+    report_2 = [
+        {
+            "$lookup": {
+                "from": "stations",
+                "localField": "station_id",
+                "foreignField": "station_id",
+                "as": "station_details"
+            }
+        },
+        {"$unwind": "$station_details"},
+        {
+            "$group": {
+                "_id": "$station_details.operator",
+                "totalRevenue": {"$sum": "$total_cost"},
+                "sessionCount": {"$sum": 1}
+            }
+        },
+        {"$sort": {"totalRevenue": -1}},
+        {"$project": {
+            "_id": 0,
+            "operator": "$_id",
+            "totalRevenue": 1,
+            "sessionCount": 1
+        }}
+    ]
+
+    run_report(d, "sessions", "Complex logical filter", report_1)
+    run_report(d, "sessions", "Revenue by Operator", report_2)
+
     logging.info("\n" + "=" * 40 + "\n      REPORTS ARE COMPLETE" + "\n" + "=" * 40)
 
     m.close()
