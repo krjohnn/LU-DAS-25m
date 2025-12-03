@@ -41,7 +41,7 @@ def connect_to_mongodb():
 
 def load_json(filename="data.json"):
     try:
-        print(f"Loading JSON data from {filename}...")
+        logging.info(f"Loading JSON data from {filename}...")
         with open(filename, 'r', encoding='utf-8') as f:
             data = json.load(f)
             return data
@@ -52,12 +52,34 @@ def load_json(filename="data.json"):
         logging.error(f"Error decoding JSON from file {filename}.")
         raise
 
-def drop_database(mongo_client, db_name="EV_Monitoring"):
+def mongo_drop_database(mongo_client, db_name="EV_Monitoring"):
     try:
         mongo_client.drop_database(db_name)
         logging.info(f"Database '{db_name}' deleted successfully.")
     except Exception as e:
         logging.error(f"Failed to delete database '{db_name}': {e}")
+        raise
+
+def mongo_import_collection(db, collection_name="charging_stations", data=[]):
+    try:
+        collection = db[collection_name]
+        if data:
+            requests = [InsertOne(item) for item in data]
+            result = collection.bulk_write(requests)
+            logging.info(f"Imported {result.inserted_count} documents into '{collection_name}' collection.")
+        else:
+            logging.warning(f"No data provided to import into '{collection_name}' collection.")
+    except Exception as e:
+        logging.error(f"Failed to import data into collection '{collection_name}': {e}")
+        raise
+
+def mongo_create_database(mongo_client, db_name="EV_Monitoring"):
+    try:
+        db = mongo_client[db_name]
+        logging.info(f"Database '{db_name}' created successfully.")
+        return db
+    except Exception as e:
+        logging.error(f"Failed to create database '{db_name}': {e}")
         raise
 
 def main():
@@ -72,29 +94,32 @@ def main():
     if not m:
         return
 
-    DB_NAME = "EV_Monitoring"
-    db_exists = DB_NAME in m.list_database_names()
+    mongodb_name = "EV_Monitoring"
+    mongodb_exists = mongodb_name in m.list_database_names()
 
     perform_import = False
 
-    if db_exists:
-        logging.info(f"Database {DB_NAME} already exists.")
+    if mongodb_exists:
+        logging.info(f"Database {mongodb_name} already exists.")
         user_input = input("Delete existing database and re-import? (y/N): ").strip().lower()
 
         if user_input == 'y':
             logging.info("Deleting existing database and re-import.")
-            drop_database(m, db_name="EV_Monitoring")
+            mongo_drop_database(m, db_name="EV_Monitoring")
             perform_import = True
         else:
             logging.info("Using existing data. Skipping import.")
     else:
         perform_import = True
-        logging.info(f"Creating new database {DB_NAME}.")
+        logging.info(f"Creating new database {mongodb_name}. Performing import.")
+        d = mongo_create_database(m, db_name=mongodb_name)
 
     if perform_import:
         logging.info("\n" + "=" * 40 + "\n      STARTING IMPORT PROCESS" + "\n" + "=" * 40)
 
         json_data = load_json(filename="stations.json")
+
+        mongo_import_collection(d, collection_name="charging_stations", data=json_data)
 
         logging.info("\n" + "=" * 40 + "\n      IMPORT COMPLETE" + "\n" + "=" * 40)
         return
@@ -124,6 +149,7 @@ def main():
     """
 
     m.close()
+    logging.info("MongoDB connection closed.")
     return
 
 if __name__ == "__main__":
