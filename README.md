@@ -1,4 +1,4 @@
-# EV Monitoring & Data Modules
+# LU-DAS-25m - Datbase Systems assignments
 
 Minimal project to import, query and report data against Redis, Neo4j and MongoDB using the scripts in `MD1`, `MD2`, and `MD3`.
 
