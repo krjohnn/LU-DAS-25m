@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient, InsertOne
 from pymongo.server_api import ServerApi
 from pymongo.errors import ConnectionFailure, ConfigurationError
-from requests import session
 
+from reports import REPORTS
 
 def connect_to_mongodb():
     """
@@ -96,7 +96,7 @@ def main():
                         datefmt='%Y-%m-%d %H:%M:%S',
                         level=logging.INFO)
 
-    m = connect_to_mongodb()
+    m = connect_to_mongodb() #TODO: Wrap in with statement
     if not m:
         return
 
@@ -140,73 +140,8 @@ def main():
 
     logging.info("\n" + "=" * 40 + "\n      STARTING REPORTS" + "\n" + "=" * 40)
 
-    report_1 = [
-        {
-            "$lookup": {
-                "from": "stations",
-                "localField": "station_id",
-                "foreignField": "station_id",
-                "as": "station_data"
-            }
-        },
-        {
-            "$match": {
-                "station_data.location_city": "Rīga",
-                "$or": [
-                    {
-                        "station_data.status": "Offline"
-                    },
-                    {
-                        "station_data.status": "Maintenance"
-                    }
-                ],
-                "price_per_kwh": {"$lte": 30.0},
-                "status": "Completed",
-                "total_cost": {"$gte": 20.0}
-            }
-        },
-        {
-            "$project": {
-                "_id": 0,
-                "session_id": 1,
-                "station_id": 1,
-                "vehicle_id": 1,
-                "kwh_consumed": 1,
-                "total_cost": 1,
-                "price_per_kwh": 1,
-                "status": 1
-            }
-        }
-    ]
-
-    report_2 = [
-        {
-            "$lookup": {
-                "from": "stations",
-                "localField": "station_id",
-                "foreignField": "station_id",
-                "as": "station_details"
-            }
-        },
-        {"$unwind": "$station_details"},
-        {
-            "$group": {
-                "_id": "$station_details.operator",
-                "totalRevenue": {"$sum": "$total_cost"},
-                "sessionCount": {"$sum": 1}
-            }
-        },
-        {"$sort": {"totalRevenue": -1}},
-        {"$project": {
-            "_id": 0,
-            "operator": "$_id",
-            "totalRevenue": 1,
-            "sessionCount": 1
-        }}
-    ]
-
-    run_report(d, "sessions", "Complex logical filter", report_1)
-    run_report(d, "sessions", "Revenue by Operator", report_2)
+    for title, pipeline in REPORTS.items():
+        run_report(d, "sessions", title, pipeline)
 
     logging.info("\n" + "=" * 40 + "\n      REPORTS ARE COMPLETE" + "\n" + "=" * 40)
 
