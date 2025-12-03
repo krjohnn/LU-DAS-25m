@@ -102,50 +102,92 @@ REPORTS = {
     ],
     "Top 3 cities with highest recorded single charging sessions (kWh)": [
         {
-            '$lookup': {
-                'from': 'stations',
-                'localField': 'station_id',
-                'foreignField': 'station_id',
-                'as': 'station_details'
+            "$lookup": {
+                "from": "stations",
+                "localField": "station_id",
+                "foreignField": "station_id",
+                "as": "station_details"
             }
         }, {
-            '$unwind': '$station_details'
+            "$unwind": "$station_details"
         }, {
-            '$group': {
-                '_id': '$station_details.location_city',
-                'topSession': {
-                    '$top': {
-                        'sortBy': {
-                            'kwh_consumed': -1
+            "$group": {
+                "_id": "$station_details.location_city",
+                "topSession": {
+                    "$top": {
+                        "sortBy": {
+                            "kwh_consumed": -1
                         },
-                        'output': {
-                            'maxKwhSession': '$kwh_consumed',
-                            'duration_minutes': '$duration_minutes',
-                            'vehicle_id': '$vehicle_id'
+                        "output": {
+                            "maxKwhSession": "$kwh_consumed",
+                            "duration_minutes": "$duration_minutes",
+                            "vehicle_id": "$vehicle_id"
                         }
                     }
                 }
             }
         }, {
-            '$sort': {
-                'topSession.maxKwhSession': -1
+            "$sort": {
+                "topSession.maxKwhSession": -1
             }
         }, {
-            '$project': {
-                '_id': 0,
-                'city': '$_id',
-                'maxKwhSession': {
-                    '$concat': [
+            "$project": {
+                "_id": 0,
+                "city": "$_id",
+                "maxKwhSession": {
+                    "$concat": [
                         {
-                            '$toString': '$topSession.maxKwhSession'
-                        }, ' kWh'
+                            "$toString": "$topSession.maxKwhSession"
+                        }, " kWh"
                     ]
                 },
-                'duration_minutes': '$topSession.duration_minutes',
-                'vehicle_id': '$topSession.vehicle_id'
+                "duration_minutes": "$topSession.duration_minutes",
+                "vehicle_id": "$topSession.vehicle_id"
             }
         }, {
-            '$limit': 3
+            "$limit": 3
+        }
+    ],
+    "Interrupted vs Completed session for each Operator": [
+        {
+            "$lookup": {
+                "from": "stations",
+                "localField": "station_id",
+                "foreignField": "station_id",
+                "as": "station_details"
+            }
+        }, {
+            "$unwind": "$station_details"
+        }, {
+            "$match": {
+                "status": {
+                    "$in": [
+                        "Interrupted", "Completed"
+                    ]
+                }
+            }
+        }, {
+            "$group": {
+                "_id": {
+                    "operator": "$station_details.operator",
+                    "status": "$status"
+                },
+                "sessionCount": {
+                    "$sum": 1
+                }
+            }
+        }, {
+            "$project": {
+                "_id": 0,
+                "Operator": "$_id.operator",
+                "Status": "$_id.status",
+                "sessionCount": 1
+            }
+        }, {
+            "$sort": {
+                "Operator": 1,
+                "Status": 1
+            }
         }
     ]
 }
