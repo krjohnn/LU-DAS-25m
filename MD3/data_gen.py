@@ -19,7 +19,7 @@ CITIES = ["Rīga","Daugavpils","Liepāja","Jelgava","Jūrmala","Ventspils","Rēz
 def generate_stations(count):
     stations = []
     print(f"Generating {count} stations...")
-    for _ in range(count):
+    for i in range(count):
         station = {
             "station_id": str(uuid.uuid4()),  # Unique UUID
             "operator": str(np.random.choice(OPERATORS,p=[0.005,0.135,0.1,0.1,0.1,0.25,0.25,0.05,0.005,0.005])),
@@ -28,7 +28,6 @@ def generate_stations(count):
             "status": str(np.random.choice(STATUS_STATION))
         }
         stations.append(station)
-        print(station)
     return stations
 
 
