@@ -33,16 +33,14 @@ def generate_stations(count):
 
 def generate_sessions(count, stations):
     sessions = []
-    station_ids = [s["station_id"] for s in stations]  # Get list of valid IDs
+    station_ids = [s["station_id"] for s in stations] 
 
     print(f"Generating {count} sessions linked to stations...")
     for i in range(count):
-        # Logic for realistic numbers
-        duration = np.random.randint(15, 90)  # Minutes
-        # Assume average charging speed varies, but roughly correlated to duration
+        duration = np.random.randint(15, 90)
         kwh = round(np.random.uniform(10, 80), 2)
         price = round(np.random.uniform(0.22, 0.45), 2)
-        cost = round(kwh * price, 2)  # 0.45 EUR per kWh
+        cost = round(kwh * price, 2)
 
         session = {
             "session_id": i + 1,

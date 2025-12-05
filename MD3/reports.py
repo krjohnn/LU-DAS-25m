@@ -37,7 +37,7 @@ REPORTS = {
             }
         }
     ],
-    "2: Revenue by Operator": [
+    "2: Top 3 Revenue by Operator": [
         {
             "$lookup": {
                 "from": "stations",
@@ -60,7 +60,10 @@ REPORTS = {
             "operator": "$_id",
             "totalRevenue": 1,
             "sessionCount": 1
-        }}
+        }},
+        {
+            "$limit": 3
+        }
     ],
     "3: Top 3 Average Charging Duration by Vehicle Type": [
         {

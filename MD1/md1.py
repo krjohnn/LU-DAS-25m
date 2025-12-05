@@ -194,6 +194,8 @@ def main():
     print("      STARTING OPERATIONS & QUERIES")
     print("=" * 40)
 
+    input(f"Press Enter to proceed to Update step...")
+
     print("\n[ Operation: Update Movies ]")
     print("Loading in_update_data.json...")
     json_update = load_json(filename="in_update_data.json")
